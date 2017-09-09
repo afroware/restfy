@@ -1,19 +1,19 @@
 <?php
 
-namespace Dingo\Api\Provider;
+namespace Afroware\Restfy\Provider;
 
 use ReflectionClass;
-use Dingo\Api\Http\Middleware\Auth;
-use Dingo\Api\Http\Middleware\Request;
-use Dingo\Api\Http\Middleware\RateLimit;
+use Afroware\Restfy\Http\Middleware\Auth;
+use Afroware\Restfy\Http\Middleware\Request;
+use Afroware\Restfy\Http\Middleware\RateLimit;
 use FastRoute\Dispatcher\GroupCountBased;
-use Dingo\Api\Http\Middleware\PrepareController;
+use Afroware\Restfy\Http\Middleware\PrepareController;
 use FastRoute\RouteParser\Std as StdRouteParser;
 use Illuminate\Http\Request as IlluminateRequest;
-use Dingo\Api\Routing\Adapter\Lumen as LumenAdapter;
+use Afroware\Restfy\Routing\Adapter\Lumen as LumenAdapter;
 use FastRoute\DataGenerator\GroupCountBased as GcbDataGenerator;
 
-class LumenServiceProvider extends DingoServiceProvider
+class LumenServiceProvider extends AfrowareServiceProvider
 {
     /**
      * Boot the service provider.
@@ -24,7 +24,7 @@ class LumenServiceProvider extends DingoServiceProvider
     {
         parent::boot();
 
-        $this->app->configure('api');
+        $this->app->configure('restfy');
 
         $reflection = new ReflectionClass($this->app);
 
@@ -49,9 +49,9 @@ class LumenServiceProvider extends DingoServiceProvider
         });
 
         $this->app->routeMiddleware([
-            'api.auth' => Auth::class,
-            'api.throttle' => RateLimit::class,
-            'api.controllers' => PrepareController::class,
+            'restfy.auth' => Auth::class,
+            'restfy.throttle' => RateLimit::class,
+            'restfy.controllers' => PrepareController::class,
         ]);
     }
 
@@ -62,7 +62,7 @@ class LumenServiceProvider extends DingoServiceProvider
      */
     protected function setupConfig()
     {
-        $this->app->configure('api');
+        $this->app->configure('restfy');
 
         parent::setupConfig();
     }
@@ -76,7 +76,7 @@ class LumenServiceProvider extends DingoServiceProvider
     {
         parent::register();
 
-        $this->app->singleton('api.router.adapter', function ($app) {
+        $this->app->singleton('restfy.router.adapter', function ($app) {
             return new LumenAdapter($app, new StdRouteParser, new GcbDataGenerator, GroupCountBased::class);
         });
     }

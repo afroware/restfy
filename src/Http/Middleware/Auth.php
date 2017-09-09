@@ -1,32 +1,32 @@
 <?php
 
-namespace Dingo\Api\Http\Middleware;
+namespace Afroware\Restfy\Http\Middleware;
 
 use Closure;
-use Dingo\Api\Routing\Router;
-use Dingo\Api\Auth\Auth as Authentication;
+use Afroware\Restfy\Routing\Router;
+use Afroware\Restfy\Auth\Auth as Authentication;
 
 class Auth
 {
     /**
      * Router instance.
      *
-     * @var \Dingo\Api\Routing\Router
+     * @var \Afroware\Restfy\Routing\Router
      */
     protected $router;
 
     /**
      * Authenticator instance.
      *
-     * @var \Dingo\Api\Auth\Auth
+     * @var \Afroware\Restfy\Auth\Auth
      */
     protected $auth;
 
     /**
      * Create a new auth middleware instance.
      *
-     * @param \Dingo\Api\Routing\Router $router
-     * @param \Dingo\Api\Auth\Auth      $auth
+     * @param \Afroware\Restfy\Routing\Router $router
+     * @param \Afroware\Restfy\Auth\Auth      $auth
      *
      * @return void
      */

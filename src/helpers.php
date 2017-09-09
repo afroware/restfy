@@ -7,10 +7,10 @@ if (! function_exists('version')) {
      *
      * @param string $version
      *
-     * @return \Dingo\Api\Routing\UrlGenerator
+     * @return \Afroware\Restfy\Routing\UrlGenerator
      */
     function version($version)
     {
-        return app('api.url')->version($version);
+        return app('restfy.url')->version($version);
     }
 }

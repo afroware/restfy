@@ -1,25 +1,25 @@
 <?php
 
-namespace Dingo\Api\Provider;
+namespace Afroware\Restfy\Provider;
 
-use Dingo\Api\Auth\Auth;
-use Dingo\Api\Routing\Router;
-use Dingo\Api\Http\Validation;
-use Dingo\Api\Http\Middleware;
-use Dingo\Api\Transformer\Factory;
-use Dingo\Api\Http\RequestValidator;
-use Dingo\Api\Http\RateLimit\Handler;
-use Dingo\Api\Http\Validation\Accept;
-use Dingo\Api\Http\Validation\Domain;
-use Dingo\Api\Http\Validation\Prefix;
-use Dingo\Api\Http\Middleware\Request;
-use Dingo\Api\Http\Middleware\RateLimit;
-use Dingo\Api\Contract\Debug\ExceptionHandler;
-use Dingo\Api\Http\Middleware\PrepareController;
-use Dingo\Api\Http\Parser\Accept as AcceptParser;
-use Dingo\Api\Http\Middleware\Auth as AuthMiddleware;
-use Dingo\Api\Http\Response\Factory as ResponseFactory;
-use Dingo\Api\Http\RateLimit\Handler as RateLimitHandler;
+use Afroware\Restfy\Auth\Auth;
+use Afroware\Restfy\Routing\Router;
+use Afroware\Restfy\Http\Validation;
+use Afroware\Restfy\Http\Middleware;
+use Afroware\Restfy\Transformer\Factory;
+use Afroware\Restfy\Http\RequestValidator;
+use Afroware\Restfy\Http\RateLimit\Handler;
+use Afroware\Restfy\Http\Validation\Accept;
+use Afroware\Restfy\Http\Validation\Domain;
+use Afroware\Restfy\Http\Validation\Prefix;
+use Afroware\Restfy\Http\Middleware\Request;
+use Afroware\Restfy\Http\Middleware\RateLimit;
+use Afroware\Restfy\Contract\Debug\ExceptionHandler;
+use Afroware\Restfy\Http\Middleware\PrepareController;
+use Afroware\Restfy\Http\Parser\Accept as AcceptParser;
+use Afroware\Restfy\Http\Middleware\Auth as AuthMiddleware;
+use Afroware\Restfy\Http\Response\Factory as ResponseFactory;
+use Afroware\Restfy\Http\RateLimit\Handler as RateLimitHandler;
 
 class HttpServiceProvider extends ServiceProvider
 {
@@ -48,7 +48,7 @@ class HttpServiceProvider extends ServiceProvider
      */
     protected function registerRateLimiting()
     {
-        $this->app->singleton('api.limiting', function ($app) {
+        $this->app->singleton('restfy.limiting', function ($app) {
             return new RateLimitHandler($app, $app['cache'], $this->config('throttling'));
         });
     }
@@ -60,7 +60,7 @@ class HttpServiceProvider extends ServiceProvider
      */
     protected function registerHttpValidation()
     {
-        $this->app->singleton('api.http.validator', function ($app) {
+        $this->app->singleton('restfy.http.validator', function ($app) {
             return new RequestValidator($app);
         });
 
@@ -104,7 +104,7 @@ class HttpServiceProvider extends ServiceProvider
      */
     protected function registerResponseFactory()
     {
-        $this->app->singleton('api.http.response', function ($app) {
+        $this->app->singleton('restfy.http.response', function ($app) {
             return new ResponseFactory($app[Factory::class]);
         });
     }

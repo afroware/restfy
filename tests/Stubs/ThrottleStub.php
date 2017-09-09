@@ -1,9 +1,9 @@
 <?php
 
-namespace Dingo\Api\Tests\Stubs;
+namespace Afroware\Restfy\Tests\Stubs;
 
 use Illuminate\Container\Container;
-use Dingo\Api\Http\RateLimit\Throttle\Throttle;
+use Afroware\Restfy\Http\RateLimit\Throttle\Throttle;
 
 class ThrottleStub extends Throttle
 {

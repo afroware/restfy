@@ -1,16 +1,16 @@
 <?php
 
-namespace Dingo\Api\Tests\Http;
+namespace Afroware\Restfy\Tests\Http;
 
 use StdClass;
 use Mockery as m;
-use Dingo\Api\Http\Response;
+use Afroware\Restfy\Http\Response;
 use PHPUnit_Framework_TestCase;
-use Dingo\Api\Transformer\Binding;
+use Afroware\Restfy\Transformer\Binding;
 use Illuminate\Container\Container;
-use Dingo\Api\Event\ResponseIsMorphing;
-use Dingo\Api\Event\ResponseWasMorphed;
-use Dingo\Api\Http\Response\Format\Json;
+use Afroware\Restfy\Event\ResponseIsMorphing;
+use Afroware\Restfy\Event\ResponseWasMorphed;
+use Afroware\Restfy\Http\Response\Format\Json;
 use Illuminate\Events\Dispatcher as EventDispatcher;
 
 class ResponseTest extends PHPUnit_Framework_TestCase

@@ -1,10 +1,10 @@
 <?php
 
-namespace Dingo\Api\Http\Validation;
+namespace Afroware\Restfy\Http\Validation;
 
 use Illuminate\support\Str;
 use Illuminate\Http\Request;
-use Dingo\Api\Contract\Http\Validator;
+use Afroware\Restfy\Contract\Http\Validator;
 
 class Domain implements Validator
 {

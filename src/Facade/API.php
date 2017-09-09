@@ -1,8 +1,8 @@
 <?php
 
-namespace Dingo\Api\Facade;
+namespace Afroware\Restfy\Facade;
 
-use Dingo\Api\Http\InternalRequest;
+use Afroware\Restfy\Http\InternalRequest;
 use Illuminate\Support\Facades\Facade;
 
 class API extends Facade
@@ -14,7 +14,7 @@ class API extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'api.dispatcher';
+        return 'restfy.dispatcher';
     }
 
     /**
@@ -26,7 +26,7 @@ class API extends Facade
      */
     public static function error(callable $callback)
     {
-        return static::$app['api.exception']->register($callback);
+        return static::$app['restfy.exception']->register($callback);
     }
 
     /**
@@ -35,21 +35,21 @@ class API extends Facade
      * @param string          $class
      * @param string|\Closure $transformer
      *
-     * @return \Dingo\Api\Transformer\Binding
+     * @return \Afroware\Restfy\Transformer\Binding
      */
     public static function transform($class, $transformer)
     {
-        return static::$app['api.transformer']->register($class, $transformer);
+        return static::$app['restfy.transformer']->register($class, $transformer);
     }
 
     /**
      * Get the authenticator.
      *
-     * @return \Dingo\Api\Auth\Auth
+     * @return \Afroware\Restfy\Auth\Auth
      */
     public static function auth()
     {
-        return static::$app['api.auth'];
+        return static::$app['restfy.auth'];
     }
 
     /**
@@ -59,7 +59,7 @@ class API extends Facade
      */
     public static function user()
     {
-        return static::$app['api.auth']->user();
+        return static::$app['restfy.auth']->user();
     }
 
     /**
@@ -69,26 +69,26 @@ class API extends Facade
      */
     public static function internal()
     {
-        return static::$app['api.router']->getCurrentRequest() instanceof InternalRequest;
+        return static::$app['restfy.router']->getCurrentRequest() instanceof InternalRequest;
     }
 
     /**
      * Get the response factory to begin building a response.
      *
-     * @return \Dingo\Api\Http\Response\Factory
+     * @return \Afroware\Restfy\Http\Response\Factory
      */
     public static function response()
     {
-        return static::$app['api.http.response'];
+        return static::$app['restfy.http.response'];
     }
 
     /**
      * Get the API router instance.
      *
-     * @return \Dingo\Api\Routing\Router
+     * @return \Afroware\Restfy\Routing\Router
      */
     public static function router()
     {
-        return static::$app['api.router'];
+        return static::$app['restfy.router'];
     }
 }

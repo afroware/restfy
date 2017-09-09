@@ -1,6 +1,6 @@
 <?php
 
-namespace Dingo\Api\Exception;
+namespace Afroware\Restfy\Exception;
 
 class DeleteResourceFailedException extends ResourceException
 {

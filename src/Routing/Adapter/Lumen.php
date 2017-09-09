@@ -1,6 +1,6 @@
 <?php
 
-namespace Dingo\Api\Routing\Adapter;
+namespace Afroware\Restfy\Routing\Adapter;
 
 use ArrayIterator;
 use ReflectionClass;
@@ -11,8 +11,8 @@ use Illuminate\Http\Request;
 use FastRoute\DataGenerator;
 use FastRoute\RouteCollector;
 use Laravel\Lumen\Application;
-use Dingo\Api\Contract\Routing\Adapter;
-use Dingo\Api\Exception\UnknownVersionException;
+use Afroware\Restfy\Contract\Routing\Adapter;
+use Afroware\Restfy\Exception\UnknownVersionException;
 
 class Lumen implements Adapter
 {

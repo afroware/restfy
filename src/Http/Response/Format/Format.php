@@ -1,6 +1,6 @@
 <?php
 
-namespace Dingo\Api\Http\Response\Format;
+namespace Afroware\Restfy\Http\Response\Format;
 
 abstract class Format
 {
@@ -23,7 +23,7 @@ abstract class Format
      *
      * @param \Illuminate\Http\Request $request
      *
-     * @return \Dingo\Api\Http\Response\Format\Format
+     * @return \Afroware\Restfy\Http\Response\Format\Format
      */
     public function setRequest($request)
     {
@@ -37,7 +37,7 @@ abstract class Format
      *
      * @param \Illuminate\Http\Response $response
      *
-     * @return \Dingo\Api\Http\Response\Format\Format
+     * @return \Afroware\Restfy\Http\Response\Format\Format
      */
     public function setResponse($response)
     {

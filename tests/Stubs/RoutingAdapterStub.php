@@ -1,14 +1,14 @@
 <?php
 
-namespace Dingo\Api\Tests\Stubs;
+namespace Afroware\Restfy\Tests\Stubs;
 
 use Closure;
-use Dingo\Api\Http\Response;
+use Afroware\Restfy\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Pipeline\Pipeline;
 use Illuminate\Container\Container;
-use Dingo\Api\Contract\Routing\Adapter;
+use Afroware\Restfy\Contract\Routing\Adapter;
 use Illuminate\Routing\Route as IlluminateRoute;
 use Illuminate\Http\Response as IlluminateResponse;
 

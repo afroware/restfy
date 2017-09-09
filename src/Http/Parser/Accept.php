@@ -1,9 +1,9 @@
 <?php
 
-namespace Dingo\Api\Http\Parser;
+namespace Afroware\Restfy\Http\Parser;
 
 use Illuminate\Http\Request;
-use Dingo\Api\Contract\Http\Parser;
+use Afroware\Restfy\Contract\Http\Parser;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class Accept implements Parser

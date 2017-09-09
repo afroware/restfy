@@ -1,12 +1,12 @@
 <?php
 
-namespace Dingo\Api\Tests\Auth\Provider;
+namespace Afroware\Restfy\Tests\Auth\Provider;
 
 use Mockery as m;
-use Dingo\Api\Routing\Route;
+use Afroware\Restfy\Routing\Route;
 use Illuminate\Http\Request;
 use PHPUnit_Framework_TestCase;
-use Dingo\Api\Tests\Stubs\AuthorizationProviderStub;
+use Afroware\Restfy\Tests\Stubs\AuthorizationProviderStub;
 
 class AuthorizationTest extends PHPUnit_Framework_TestCase
 {

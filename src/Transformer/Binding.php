@@ -1,6 +1,6 @@
 <?php
 
-namespace Dingo\Api\Transformer;
+namespace Afroware\Restfy\Transformer;
 
 use Closure;
 use RuntimeException;

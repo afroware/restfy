@@ -1,6 +1,6 @@
 <?php
 
-namespace Dingo\Api\Routing;
+namespace Afroware\Restfy\Routing;
 
 use Illuminate\Routing\ResourceRegistrar as IlluminateResourceRegistrar;
 
@@ -16,7 +16,7 @@ class ResourceRegistrar extends IlluminateResourceRegistrar
     /**
      * Create a new resource registrar instance.
      *
-     * @param \Dingo\Api\Routing\Router $router
+     * @param \Afroware\Restfy\Routing\Router $router
      *
      * @return void
      */

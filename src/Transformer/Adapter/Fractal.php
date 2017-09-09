@@ -1,10 +1,10 @@
 <?php
 
-namespace Dingo\Api\Transformer\Adapter;
+namespace Afroware\Restfy\Transformer\Adapter;
 
-use Dingo\Api\Http\Request;
-use Dingo\Api\Transformer\Binding;
-use Dingo\Api\Contract\Transformer\Adapter;
+use Afroware\Restfy\Http\Request;
+use Afroware\Restfy\Transformer\Binding;
+use Afroware\Restfy\Contract\Transformer\Adapter;
 use League\Fractal\Manager as FractalManager;
 use League\Fractal\Resource\Item as FractalItem;
 use League\Fractal\Pagination\IlluminatePaginatorAdapter;
@@ -66,8 +66,8 @@ class Fractal implements Adapter
      *
      * @param mixed                          $response
      * @param object                         $transformer
-     * @param \Dingo\Api\Transformer\Binding $binding
-     * @param \Dingo\Api\Http\Request        $request
+     * @param \Afroware\Restfy\Transformer\Binding $binding
+     * @param \Afroware\Restfy\Http\Request        $request
      *
      * @return array
      */
@@ -155,7 +155,7 @@ class Fractal implements Adapter
     /**
      * Parse the includes.
      *
-     * @param \Dingo\Api\Http\Request $request
+     * @param \Afroware\Restfy\Http\Request $request
      *
      * @return void
      */
@@ -204,7 +204,7 @@ class Fractal implements Adapter
     /**
      * Disable eager loading.
      *
-     * @return \Dingo\Api\Transformer\Adapter\Fractal
+     * @return \Afroware\Restfy\Transformer\Adapter\Fractal
      */
     public function disableEagerLoading()
     {
@@ -216,7 +216,7 @@ class Fractal implements Adapter
     /**
      * Enable eager loading.
      *
-     * @return \Dingo\Api\Transformer\Adapter\Fractal
+     * @return \Afroware\Restfy\Transformer\Adapter\Fractal
      */
     public function enableEagerLoading()
     {

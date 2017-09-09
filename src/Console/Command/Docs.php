@@ -1,12 +1,12 @@
 <?php
 
-namespace Dingo\Api\Console\Command;
+namespace Afroware\Restfy\Console\Command;
 
 use ReflectionClass;
-use Dingo\Blueprint\Writer;
+use Afroware\Blueprint\Writer;
 use Illuminate\Support\Arr;
-use Dingo\Api\Routing\Router;
-use Dingo\Blueprint\Blueprint;
+use Afroware\Restfy\Routing\Router;
+use Afroware\Blueprint\Blueprint;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
 
@@ -15,28 +15,28 @@ class Docs extends Command
     /**
      * Router instance.
      *
-     * @var \Dingo\Api\Routing\Router
+     * @var \Afroware\Restfy\Routing\Router
      */
     protected $router;
 
     /**
      * The blueprint instance.
      *
-     * @var \Dingo\Blueprint\Blueprint
+     * @var \Afroware\Blueprint\Blueprint
      */
     protected $blueprint;
 
     /**
      * Blueprint instance.
      *
-     * @var \Dingo\Blueprint\Blueprint
+     * @var \Afroware\Blueprint\Blueprint
      */
     protected $docs;
 
     /**
      * Writer instance.
      *
-     * @var \Dingo\Blueprint\Writer
+     * @var \Afroware\Blueprint\Writer
      */
     protected $writer;
 
@@ -59,7 +59,7 @@ class Docs extends Command
      *
      * @var string
      */
-    protected $signature = 'api:docs {--name= : Name of the generated documentation}
+    protected $signature = 'restfy:docs {--name= : Name of the generated documentation}
                                      {--use-version= : Version of the documentation to be generated}
                                      {--output-file= : Output the generated documentation to a file}
                                      {--include-path= : Path where included documentation files are located}';
@@ -74,9 +74,9 @@ class Docs extends Command
     /**
      * Create a new docs command instance.
      *
-     * @param \Dingo\Api\Routing\Router  $router
-     * @param \Dingo\Blueprint\Blueprint $blueprint
-     * @param \Dingo\Blueprint\Writer    $writer
+     * @param \Afroware\Restfy\Routing\Router  $router
+     * @param \Afroware\Blueprint\Blueprint $blueprint
+     * @param \Afroware\Blueprint\Writer    $writer
      * @param string                     $name
      * @param string                     $version
      *

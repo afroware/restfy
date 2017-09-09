@@ -1,6 +1,6 @@
 <?php
 
-namespace Dingo\Api\Routing;
+namespace Afroware\Restfy\Routing;
 
 use Countable;
 use ArrayIterator;
@@ -32,7 +32,7 @@ class RouteCollection implements Countable, IteratorAggregate
     /**
      * Add a route to the collection.
      *
-     * @param \Dingo\Api\Routing\Route $route
+     * @param \Afroware\Restfy\Routing\Route $route
      *
      * @return void
      */
@@ -46,7 +46,7 @@ class RouteCollection implements Countable, IteratorAggregate
     /**
      * Add route lookups.
      *
-     * @param \Dingo\Api\Routing\Route $route
+     * @param \Afroware\Restfy\Routing\Route $route
      *
      * @return void
      */
@@ -68,7 +68,7 @@ class RouteCollection implements Countable, IteratorAggregate
      *
      * @param string $name
      *
-     * @return \Dingo\Api\Routing\Route|null
+     * @return \Afroware\Restfy\Routing\Route|null
      */
     public function getByName($name)
     {
@@ -80,7 +80,7 @@ class RouteCollection implements Countable, IteratorAggregate
      *
      * @param string $action
      *
-     * @return \Dingo\Api\Routing\Route|null
+     * @return \Afroware\Restfy\Routing\Route|null
      */
     public function getByAction($action)
     {

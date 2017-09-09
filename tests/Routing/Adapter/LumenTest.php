@@ -1,10 +1,10 @@
 <?php
 
-namespace Dingo\Api\Tests\Routing\Adapter;
+namespace Afroware\Restfy\Tests\Routing\Adapter;
 
 use Illuminate\Http\Request;
 use Laravel\Lumen\Application;
-use Dingo\Api\Routing\Adapter\Lumen;
+use Afroware\Restfy\Routing\Adapter\Lumen;
 use FastRoute\RouteParser\Std as StdRouteParser;
 use FastRoute\Dispatcher\GroupCountBased as GcbDispatcher;
 use FastRoute\DataGenerator\GroupCountBased as GcbDataGenerator;
@@ -14,8 +14,8 @@ class LumenTest extends BaseAdapterTest
     public function getAdapterInstance()
     {
         $this->container->routeMiddleware([
-            'api.auth' => get_class($this->container['api.auth']),
-            'api.limiting' => get_class($this->container['api.limiting']),
+            'restfy.auth' => get_class($this->container['restfy.auth']),
+            'restfy.limiting' => get_class($this->container['restfy.limiting']),
         ]);
 
         // When we rebind the "request" instance during testing we'll pull the route resolver

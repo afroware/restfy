@@ -1,22 +1,22 @@
 <?php
 
-namespace Dingo\Api\Tests\Transformer;
+namespace Afroware\Restfy\Tests\Transformer;
 
 use Mockery;
 use PHPUnit_Framework_TestCase;
-use Dingo\Api\Transformer\Factory;
+use Afroware\Restfy\Transformer\Factory;
 use Illuminate\Support\Collection;
 use Illuminate\Container\Container;
-use Dingo\Api\Tests\Stubs\UserStub;
-use Dingo\Api\Tests\Stubs\TransformerStub;
-use Dingo\Api\Tests\Stubs\UserTransformerStub;
+use Afroware\Restfy\Tests\Stubs\UserStub;
+use Afroware\Restfy\Tests\Stubs\TransformerStub;
+use Afroware\Restfy\Tests\Stubs\UserTransformerStub;
 
 class FactoryTest extends PHPUnit_Framework_TestCase
 {
     public function setUp()
     {
         $container = new Container;
-        $container['request'] = Mockery::mock('Dingo\Api\Http\Request');
+        $container['request'] = Mockery::mock('Afroware\Restfy\Http\Request');
 
         $this->factory = new Factory($container, new TransformerStub);
     }
@@ -30,7 +30,7 @@ class FactoryTest extends PHPUnit_Framework_TestCase
     {
         $this->assertFalse($this->factory->transformableResponse(new UserStub('Jason'), new UserTransformerStub));
 
-        $this->factory->register('Dingo\Api\Tests\Stubs\UserStub', new UserTransformerStub);
+        $this->factory->register('Afroware\Restfy\Tests\Stubs\UserStub', new UserTransformerStub);
 
         $this->assertTrue($this->factory->transformableResponse(new UserStub('Jason'), new UserTransformerStub));
     }
@@ -38,7 +38,7 @@ class FactoryTest extends PHPUnit_Framework_TestCase
     public function testRegisterParameterOrder()
     {
         // Third parameter is parameters and fourth is callback.
-        $binding = $this->factory->register('Dingo\Api\Tests\Stubs\UserStub', new UserTransformerStub, ['foo' => 'bar'], function ($foo) {
+        $binding = $this->factory->register('Afroware\Restfy\Tests\Stubs\UserStub', new UserTransformerStub, ['foo' => 'bar'], function ($foo) {
             $this->assertSame('foo', $foo);
         });
 
@@ -46,12 +46,12 @@ class FactoryTest extends PHPUnit_Framework_TestCase
         $this->assertSame(['foo' => 'bar'], $binding->getParameters());
 
         // Third parameter is parameters and fourth is null.
-        $binding = $this->factory->register('Dingo\Api\Tests\Stubs\UserStub', new UserTransformerStub, ['foo' => 'bar']);
+        $binding = $this->factory->register('Afroware\Restfy\Tests\Stubs\UserStub', new UserTransformerStub, ['foo' => 'bar']);
 
         $this->assertSame(['foo' => 'bar'], $binding->getParameters());
 
         // Third parameter is callback and fourth is null.
-        $binding = $this->factory->register('Dingo\Api\Tests\Stubs\UserStub', new UserTransformerStub, function ($foo) {
+        $binding = $this->factory->register('Afroware\Restfy\Tests\Stubs\UserStub', new UserTransformerStub, function ($foo) {
             $this->assertSame('foo', $foo);
         });
 
@@ -67,7 +67,7 @@ class FactoryTest extends PHPUnit_Framework_TestCase
 
     public function testTransformingResponse()
     {
-        $this->factory->register('Dingo\Api\Tests\Stubs\UserStub', new UserTransformerStub);
+        $this->factory->register('Afroware\Restfy\Tests\Stubs\UserStub', new UserTransformerStub);
 
         $response = $this->factory->transform(new UserStub('Jason'));
 
@@ -76,7 +76,7 @@ class FactoryTest extends PHPUnit_Framework_TestCase
 
     public function testTransformingCollectionResponse()
     {
-        $this->factory->register('Dingo\Api\Tests\Stubs\UserStub', new UserTransformerStub);
+        $this->factory->register('Afroware\Restfy\Tests\Stubs\UserStub', new UserTransformerStub);
 
         $response = $this->factory->transform(new Collection([new UserStub('Jason'), new UserStub('Bob')]));
 
@@ -90,7 +90,7 @@ class FactoryTest extends PHPUnit_Framework_TestCase
 
         $factory = new Factory($container, new TransformerStub);
 
-        $factory->register('Dingo\Api\Tests\Stubs\UserStub', new UserTransformerStub);
+        $factory->register('Afroware\Restfy\Tests\Stubs\UserStub', new UserTransformerStub);
 
         $response = $factory->transform(new UserStub('Jason'));
 
@@ -99,7 +99,7 @@ class FactoryTest extends PHPUnit_Framework_TestCase
 
     /**
      * @expectedException \RuntimeException
-     * @expectedExceptionMessage Unable to find bound transformer for "Dingo\Api\Tests\Stubs\UserStub" class
+     * @expectedExceptionMessage Unable to find bound transformer for "Afroware\Restfy\Tests\Stubs\UserStub" class
      */
     public function testTransformingWithNoTransformerThrowsException()
     {

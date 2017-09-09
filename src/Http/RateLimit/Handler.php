@@ -1,14 +1,14 @@
 <?php
 
-namespace Dingo\Api\Http\RateLimit;
+namespace Afroware\Restfy\Http\RateLimit;
 
-use Dingo\Api\Http\Request;
+use Afroware\Restfy\Http\Request;
 use Illuminate\Cache\CacheManager;
 use Illuminate\Support\Collection;
 use Illuminate\Container\Container;
-use Dingo\Api\Http\RateLimit\Throttle\Route;
-use Dingo\Api\Contract\Http\RateLimit\Throttle;
-use Dingo\Api\Contract\Http\RateLimit\HasRateLimiter;
+use Afroware\Restfy\Http\RateLimit\Throttle\Route;
+use Afroware\Restfy\Contract\Http\RateLimit\Throttle;
+use Afroware\Restfy\Contract\Http\RateLimit\HasRateLimiter;
 
 class Handler
 {
@@ -36,14 +36,14 @@ class Handler
     /**
      * Throttle used for rate limiting.
      *
-     * @var \Dingo\Api\Contract\Http\RateLimit\Throttle
+     * @var \Afroware\Restfy\Contract\Http\RateLimit\Throttle
      */
     protected $throttle;
 
     /**
      * Request instance being throttled.
      *
-     * @var \Dingo\Api\Http\Request
+     * @var \Afroware\Restfy\Http\Request
      */
     protected $request;
 
@@ -80,7 +80,7 @@ class Handler
     /**
      * Execute the rate limiting for the given request.
      *
-     * @param \Dingo\Api\Http\Request $request
+     * @param \Afroware\Restfy\Http\Request $request
      * @param int                     $limit
      * @param int                     $expires
      *
@@ -171,7 +171,7 @@ class Handler
      */
     protected function key($key)
     {
-        return sprintf('dingo.api.%s.%s.%s', $this->keyPrefix, $key, $this->getRateLimiter());
+        return sprintf('afroware.restfy.%s.%s.%s', $this->keyPrefix, $key, $this->getRateLimiter());
     }
 
     /**
@@ -261,7 +261,7 @@ class Handler
     /**
      * Set the throttle to use for rate limiting.
      *
-     * @param string|\Dingo\Api\Contract\Http\RateLimit\Throttle $throttle
+     * @param string|\Afroware\Restfy\Contract\Http\RateLimit\Throttle $throttle
      *
      * @return void
      */
@@ -277,7 +277,7 @@ class Handler
     /**
      * Get the throttle used to rate limit the request.
      *
-     * @return \Dingo\Api\Contract\Http\RateLimit\Throttle
+     * @return \Afroware\Restfy\Contract\Http\RateLimit\Throttle
      */
     public function getThrottle()
     {
@@ -319,7 +319,7 @@ class Handler
     /**
      * Extend the rate limiter by adding a new throttle.
      *
-     * @param callable|\Dingo\Api\Http\RateLimit\Throttle $throttle
+     * @param callable|\Afroware\Restfy\Http\RateLimit\Throttle $throttle
      *
      * @return void
      */

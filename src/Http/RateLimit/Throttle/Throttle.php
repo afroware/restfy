@@ -1,8 +1,8 @@
 <?php
 
-namespace Dingo\Api\Http\RateLimit\Throttle;
+namespace Afroware\Restfy\Http\RateLimit\Throttle;
 
-use Dingo\Api\Contract\Http\RateLimit\Throttle as RateLimitThrottle;
+use Afroware\Restfy\Contract\Http\RateLimit\Throttle as RateLimitThrottle;
 
 abstract class Throttle implements RateLimitThrottle
 {

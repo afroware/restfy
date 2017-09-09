@@ -1,10 +1,10 @@
 <?php
 
-namespace Dingo\Api\Tests\Http\Validation;
+namespace Afroware\Restfy\Tests\Http\Validation;
 
 use Illuminate\Http\Request;
 use PHPUnit_Framework_TestCase;
-use Dingo\Api\Http\Validation\Prefix;
+use Afroware\Restfy\Http\Validation\Prefix;
 
 class PrefixTest extends PHPUnit_Framework_TestCase
 {
@@ -26,8 +26,8 @@ class PrefixTest extends PHPUnit_Framework_TestCase
 
     public function testValidationPassesWithHyphenatedPrefix()
     {
-        $validator = new Prefix('web-api');
-        $this->assertTrue($validator->validate(Request::create('web-api', 'GET')), 'Validation failed when it should have passed with a valid prefix.');
-        $this->assertTrue($validator->validate(Request::create('web-api/bar', 'GET')), 'Validation failed when it should have passed with a valid prefix.');
+        $validator = new Prefix('web-restfy');
+        $this->assertTrue($validator->validate(Request::create('web-restfy', 'GET')), 'Validation failed when it should have passed with a valid prefix.');
+        $this->assertTrue($validator->validate(Request::create('web-restfy/bar', 'GET')), 'Validation failed when it should have passed with a valid prefix.');
     }
 }

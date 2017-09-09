@@ -1,10 +1,10 @@
 <?php
 
-namespace Dingo\Api\Tests\Stubs;
+namespace Afroware\Restfy\Tests\Stubs;
 
 use Illuminate\Http\Request;
-use Dingo\Api\Routing\Route;
-use Dingo\Api\Auth\Provider\Authorization;
+use Afroware\Restfy\Routing\Route;
+use Afroware\Restfy\Auth\Provider\Authorization;
 
 class AuthorizationProviderStub extends Authorization
 {

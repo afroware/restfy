@@ -1,13 +1,13 @@
 <?php
 
-namespace Dingo\Api\Routing\Adapter;
+namespace Afroware\Restfy\Routing\Adapter;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Illuminate\Routing\Router;
-use Dingo\Api\Contract\Routing\Adapter;
+use Afroware\Restfy\Contract\Routing\Adapter;
 use Illuminate\Routing\RouteCollection;
-use Dingo\Api\Exception\UnknownVersionException;
+use Afroware\Restfy\Exception\UnknownVersionException;
 
 class Laravel implements Adapter
 {

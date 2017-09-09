@@ -1,17 +1,17 @@
 <?php
 
-namespace Dingo\Api\Routing;
+namespace Afroware\Restfy\Routing;
 
 use ErrorException;
-use Dingo\Api\Auth\Auth;
-use Dingo\Api\Dispatcher;
-use Dingo\Api\Http\Response\Factory;
+use Afroware\Restfy\Auth\Auth;
+use Afroware\Restfy\Dispatcher;
+use Afroware\Restfy\Http\Response\Factory;
 
 /**
- * @property \Dingo\Api\Dispatcher                                            $api
+ * @property \Afroware\Restfy\Dispatcher                                            $restfy
  * @property \Illuminate\Auth\GenericUser|\Illuminate\Database\Eloquent\Model $user
- * @property \Dingo\Api\Auth\Auth                                             $auth
- * @property \Dingo\Api\Http\Response\Factory                                 $response
+ * @property \Afroware\Restfy\Auth\Auth                                             $auth
+ * @property \Afroware\Restfy\Http\Response\Factory                                 $response
  */
 trait Helpers
 {
@@ -46,7 +46,7 @@ trait Helpers
     /**
      * Throttles for controller methods.
      *
-     * @param string|\Dingo\Api\Contract\Http\RateLimit\Throttle $class
+     * @param string|\Afroware\Restfy\Contract\Http\RateLimit\Throttle $class
      * @param array                                              $options
      *
      * @return void
@@ -155,9 +155,9 @@ trait Helpers
     /**
      * Get the internal dispatcher instance.
      *
-     * @return \Dingo\Api\Dispatcher
+     * @return \Afroware\Restfy\Dispatcher
      */
-    public function api()
+    public function restfy()
     {
         return app(Dispatcher::class);
     }
@@ -175,7 +175,7 @@ trait Helpers
     /**
      * Get the auth instance.
      *
-     * @return \Dingo\Api\Auth\Auth
+     * @return \Afroware\Restfy\Auth\Auth
      */
     protected function auth()
     {
@@ -185,7 +185,7 @@ trait Helpers
     /**
      * Get the response factory instance.
      *
-     * @return \Dingo\Api\Http\Response\Factory
+     * @return \Afroware\Restfy\Http\Response\Factory
      */
     protected function response()
     {
@@ -204,7 +204,7 @@ trait Helpers
     public function __get($key)
     {
         $callable = [
-            'api', 'user', 'auth', 'response',
+            'restfy', 'user', 'auth', 'response',
         ];
 
         if (in_array($key, $callable) && method_exists($this, $key)) {
@@ -222,7 +222,7 @@ trait Helpers
      *
      * @throws \ErrorException
      *
-     * @return \Dingo\Api\Http\Response
+     * @return \Afroware\Restfy\Http\Response
      */
     public function __call($method, $parameters)
     {

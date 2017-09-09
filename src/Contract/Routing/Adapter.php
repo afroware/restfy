@@ -1,6 +1,6 @@
 <?php
 
-namespace Dingo\Api\Contract\Routing;
+namespace Afroware\Restfy\Contract\Routing;
 
 use Illuminate\Http\Request;
 

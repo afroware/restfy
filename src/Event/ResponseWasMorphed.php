@@ -1,6 +1,6 @@
 <?php
 
-namespace Dingo\Api\Event;
+namespace Afroware\Restfy\Event;
 
 class ResponseWasMorphed extends ResponseIsMorphing
 {

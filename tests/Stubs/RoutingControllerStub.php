@@ -1,8 +1,8 @@
 <?php
 
-namespace Dingo\Api\Tests\Stubs;
+namespace Afroware\Restfy\Tests\Stubs;
 
-use Dingo\Api\Routing\Helpers;
+use Afroware\Restfy\Routing\Helpers;
 use Illuminate\Routing\Controller;
 
 class RoutingControllerStub extends Controller

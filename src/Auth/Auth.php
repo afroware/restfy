@@ -1,9 +1,9 @@
 <?php
 
-namespace Dingo\Api\Auth;
+namespace Afroware\Restfy\Auth;
 
 use Exception;
-use Dingo\Api\Routing\Router;
+use Afroware\Restfy\Routing\Router;
 use Illuminate\Container\Container;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
@@ -13,7 +13,7 @@ class Auth
     /**
      * Router instance.
      *
-     * @var \Dingo\Api\Routing\Router
+     * @var \Afroware\Restfy\Routing\Router
      */
     protected $router;
 
@@ -34,7 +34,7 @@ class Auth
     /**
      * The provider used for authentication.
      *
-     * @var \Dingo\Api\Contract\Auth\Provider
+     * @var \Afroware\Restfy\Contract\Auth\Provider
      */
     protected $providerUsed;
 
@@ -48,7 +48,7 @@ class Auth
     /**
      * Create a new auth instance.
      *
-     * @param \Dingo\Api\Routing\Router       $router
+     * @param \Afroware\Restfy\Routing\Router       $router
      * @param \Illuminate\Container\Container $container
      * @param array                           $providers
      *
@@ -171,7 +171,7 @@ class Auth
      *
      * @param \Illuminate\Auth\GenericUser|\Illuminate\Database\Eloquent\Model $user
      *
-     * @return \Dingo\Api\Auth\Auth
+     * @return \Afroware\Restfy\Auth\Auth
      */
     public function setUser($user)
     {
@@ -195,7 +195,7 @@ class Auth
     /**
      * Get the provider used for authentication.
      *
-     * @return \Dingo\Api\Contract\Auth\Provider
+     * @return \Afroware\Restfy\Contract\Auth\Provider
      */
     public function getProviderUsed()
     {

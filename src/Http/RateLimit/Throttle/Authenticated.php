@@ -1,6 +1,6 @@
 <?php
 
-namespace Dingo\Api\Http\RateLimit\Throttle;
+namespace Afroware\Restfy\Http\RateLimit\Throttle;
 
 use Illuminate\Container\Container;
 
@@ -15,6 +15,6 @@ class Authenticated extends Throttle
      */
     public function match(Container $container)
     {
-        return $container['api.auth']->check();
+        return $container['restfy.auth']->check();
     }
 }

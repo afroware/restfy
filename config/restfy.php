@@ -8,7 +8,7 @@ return [
     | Standards Tree
     |--------------------------------------------------------------------------
     |
-    | Versioning an API with Dingo revolves around content negotiation and
+    | Versioning an API with Afroware revolves around content negotiation and
     | custom MIME types. A custom type will belong to one of three
     | standards trees, the Vendor tree (vnd), the Personal tree
     | (prs), and the Unregistered tree (x).
@@ -199,7 +199,7 @@ return [
     |
     */
 
-    'transformer' => env('API_TRANSFORMER', Dingo\Api\Transformer\Adapter\Fractal::class),
+    'transformer' => env('API_TRANSFORMER', Afroware\Restfy\Transformer\Adapter\Fractal::class),
 
     /*
     |--------------------------------------------------------------------------
@@ -216,7 +216,7 @@ return [
 
     'formats' => [
 
-        'json' => Dingo\Api\Http\Response\Format\Json::class,
+        'json' => Afroware\Restfy\Http\Response\Format\Json::class,
 
     ],
 

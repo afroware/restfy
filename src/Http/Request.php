@@ -1,17 +1,17 @@
 <?php
 
-namespace Dingo\Api\Http;
+namespace Afroware\Restfy\Http;
 
-use Dingo\Api\Http\Parser\Accept;
+use Afroware\Restfy\Http\Parser\Accept;
 use Illuminate\Http\Request as IlluminateRequest;
-use Dingo\Api\Contract\Http\Request as RequestInterface;
+use Afroware\Restfy\Contract\Http\Request as RequestInterface;
 
 class Request extends IlluminateRequest implements RequestInterface
 {
     /**
      * Accept parser instance.
      *
-     * @var \Dingo\Api\Http\Parser\Accept
+     * @var \Afroware\Restfy\Http\Parser\Accept
      */
     protected static $acceptParser;
 
@@ -23,11 +23,11 @@ class Request extends IlluminateRequest implements RequestInterface
     protected $accept;
 
     /**
-     * Create a new Dingo request instance from an Illuminate request instance.
+     * Create a new Afroware request instance from an Illuminate request instance.
      *
      * @param \Illuminate\Http\Request $old
      *
-     * @return \Dingo\Api\Http\Request
+     * @return \Afroware\Restfy\Http\Request
      */
     public function createFromIlluminate(IlluminateRequest $old)
     {
@@ -99,7 +99,7 @@ class Request extends IlluminateRequest implements RequestInterface
     /**
      * Set the accept parser instance.
      *
-     * @param \Dingo\Api\Http\Parser\Accept $acceptParser
+     * @param \Afroware\Restfy\Http\Parser\Accept $acceptParser
      *
      * @return void
      */
@@ -111,7 +111,7 @@ class Request extends IlluminateRequest implements RequestInterface
     /**
      * Get the accept parser instance.
      *
-     * @return \Dingo\Api\Http\Parser\Accept
+     * @return \Afroware\Restfy\Http\Parser\Accept
      */
     public static function getAcceptParser()
     {

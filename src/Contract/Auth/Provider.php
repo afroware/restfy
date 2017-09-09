@@ -1,9 +1,9 @@
 <?php
 
-namespace Dingo\Api\Contract\Auth;
+namespace Afroware\Restfy\Contract\Auth;
 
 use Illuminate\Http\Request;
-use Dingo\Api\Routing\Route;
+use Afroware\Restfy\Routing\Route;
 
 interface Provider
 {
@@ -11,7 +11,7 @@ interface Provider
      * Authenticate the request and return the authenticated user instance.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \Dingo\Api\Routing\Route $route
+     * @param \Afroware\Restfy\Routing\Route $route
      *
      * @return mixed
      */

@@ -1,6 +1,6 @@
 <?php
 
-namespace Dingo\Api\Exception;
+namespace Afroware\Restfy\Exception;
 
 use Exception;
 use Symfony\Component\HttpKernel\Exception\HttpException;

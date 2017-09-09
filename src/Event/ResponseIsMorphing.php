@@ -1,15 +1,15 @@
 <?php
 
-namespace Dingo\Api\Event;
+namespace Afroware\Restfy\Event;
 
-use Dingo\Api\Http\Response;
+use Afroware\Restfy\Http\Response;
 
 class ResponseIsMorphing
 {
     /**
      * Response instance.
      *
-     * @var \Dingo\Api\Http\Response
+     * @var \Afroware\Restfy\Http\Response
      */
     public $response;
 
@@ -24,7 +24,7 @@ class ResponseIsMorphing
      * Create a new response is morphing event. Content is passed by reference
      * so that multiple listeners can modify content.
      *
-     * @param \Dingo\Api\Http\Response $response
+     * @param \Afroware\Restfy\Http\Response $response
      * @param string                   $content
      *
      * @return void

@@ -1,15 +1,15 @@
 <?php
 
-namespace Dingo\Api\Tests\Auth;
+namespace Afroware\Restfy\Tests\Auth;
 
 use Mockery as m;
-use Dingo\Api\Auth\Auth;
-use Dingo\Api\Http\Request;
-use Dingo\Api\Routing\Route;
-use Dingo\Api\Routing\Router;
+use Afroware\Restfy\Auth\Auth;
+use Afroware\Restfy\Http\Request;
+use Afroware\Restfy\Routing\Route;
+use Afroware\Restfy\Routing\Router;
 use PHPUnit_Framework_TestCase;
 use Illuminate\Container\Container;
-use Dingo\Api\Contract\Auth\Provider;
+use Afroware\Restfy\Contract\Auth\Provider;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 

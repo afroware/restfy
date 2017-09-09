@@ -1,10 +1,10 @@
 <?php
 
-namespace Dingo\Api\Console\Command;
+namespace Afroware\Restfy\Console\Command;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Dingo\Api\Routing\Router;
+use Afroware\Restfy\Routing\Router;
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Illuminate\Foundation\Console\RouteListCommand;
@@ -12,9 +12,9 @@ use Illuminate\Foundation\Console\RouteListCommand;
 class Routes extends RouteListCommand
 {
     /**
-     * Dingo router instance.
+     * Afroware router instance.
      *
-     * @var \Dingo\Api\Routing\Router
+     * @var \Afroware\Restfy\Routing\Router
      */
     protected $router;
 
@@ -30,7 +30,7 @@ class Routes extends RouteListCommand
      *
      * @var string
      */
-    protected $name = 'api:routes';
+    protected $name = 'restfy:routes';
 
     /**
      * The console command description.
@@ -49,7 +49,7 @@ class Routes extends RouteListCommand
     /**
      * Create a new routes command instance.
      *
-     * @param \Dingo\Api\Routing\Router $router
+     * @param \Afroware\Restfy\Routing\Router $router
      *
      * @return void
      */
@@ -126,7 +126,7 @@ class Routes extends RouteListCommand
      * idea of how many requests you'd be able to fire off per second
      * on the route.
      *
-     * @param \Dingo\Api\Routing\Route $route
+     * @param \Afroware\Restfy\Routing\Route $route
      *
      * @return null|string
      */

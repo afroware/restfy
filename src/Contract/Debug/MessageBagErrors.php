@@ -1,6 +1,6 @@
 <?php
 
-namespace Dingo\Api\Contract\Debug;
+namespace Afroware\Restfy\Contract\Debug;
 
 interface MessageBagErrors
 {

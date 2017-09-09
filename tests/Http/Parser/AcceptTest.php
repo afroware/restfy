@@ -1,20 +1,20 @@
 <?php
 
-namespace Dingo\Api\Tests\Http\Parser;
+namespace Afroware\Restfy\Tests\Http\Parser;
 
-use Dingo\Api\Http\Request;
+use Afroware\Restfy\Http\Request;
 use PHPUnit_Framework_TestCase;
-use Dingo\Api\Http\Parser\Accept;
+use Afroware\Restfy\Http\Parser\Accept;
 
 class AcceptTest extends PHPUnit_Framework_TestCase
 {
     public function testParsingInvalidAcceptReturnsDefaults()
     {
-        $parser = new Accept('vnd', 'api', 'v1', 'json');
+        $parser = new Accept('vnd', 'restfy', 'v1', 'json');
 
         $accept = $parser->parse($this->createRequest('foo', 'GET', ['accept' => 'application/vnd.foo.v2+xml']));
 
-        $this->assertSame('api', $accept['subtype']);
+        $this->assertSame('restfy', $accept['subtype']);
         $this->assertSame('v1', $accept['version']);
         $this->assertSame('json', $accept['format']);
     }
@@ -25,40 +25,40 @@ class AcceptTest extends PHPUnit_Framework_TestCase
      */
     public function testStrictlyParsingInvalidAcceptHeaderThrowsException()
     {
-        $parser = new Accept('vnd', 'api', 'v1', 'json');
+        $parser = new Accept('vnd', 'restfy', 'v1', 'json');
 
         $accept = $parser->parse($this->createRequest('foo', 'GET', ['accept' => 'application/vnd.foo.v2+xml']), true);
     }
 
     public function testParsingValidAcceptReturnsHeaderValues()
     {
-        $parser = new Accept('vnd', 'api', 'v1', 'json');
+        $parser = new Accept('vnd', 'restfy', 'v1', 'json');
 
-        $accept = $parser->parse($this->createRequest('foo', 'GET', ['accept' => 'application/vnd.api.v2+xml']));
+        $accept = $parser->parse($this->createRequest('foo', 'GET', ['accept' => 'application/vnd.restfy.v2+xml']));
 
-        $this->assertSame('api', $accept['subtype']);
+        $this->assertSame('restfy', $accept['subtype']);
         $this->assertSame('v2', $accept['version']);
         $this->assertSame('xml', $accept['format']);
     }
 
-    public function testApiVersionWithoutVSuffix()
+    public function testRestfyVersionWithoutVSuffix()
     {
-        $parser = new Accept('vnd', 'api', '1.0', 'json');
+        $parser = new Accept('vnd', 'restfy', '1.0', 'json');
 
-        $accept = $parser->parse($this->createRequest('foo', 'GET', ['accept' => 'application/vnd.api.1.0+xml']));
+        $accept = $parser->parse($this->createRequest('foo', 'GET', ['accept' => 'application/vnd.restfy.1.0+xml']));
 
-        $this->assertSame('api', $accept['subtype']);
+        $this->assertSame('restfy', $accept['subtype']);
         $this->assertSame('1.0', $accept['version']);
         $this->assertSame('xml', $accept['format']);
     }
 
-    public function testApiVersionWithHyphen()
+    public function testRestfyVersionWithHyphen()
     {
-        $parser = new Accept('vnd', 'api', '1.0-beta', 'json');
+        $parser = new Accept('vnd', 'restfy', '1.0-beta', 'json');
 
-        $accept = $parser->parse($this->createRequest('foo', 'GET', ['accept' => 'application/vnd.api.1.0-beta+xml']));
+        $accept = $parser->parse($this->createRequest('foo', 'GET', ['accept' => 'application/vnd.restfy.1.0-beta+xml']));
 
-        $this->assertSame('api', $accept['subtype']);
+        $this->assertSame('restfy', $accept['subtype']);
         $this->assertSame('1.0-beta', $accept['version']);
         $this->assertSame('xml', $accept['format']);
     }

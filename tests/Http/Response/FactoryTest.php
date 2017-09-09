@@ -1,14 +1,14 @@
 <?php
 
-namespace Dingo\Api\Tests\Http\Response;
+namespace Afroware\Restfy\Tests\Http\Response;
 
 use Mockery;
 use PHPUnit_Framework_TestCase;
 use Illuminate\Support\Collection;
-use Dingo\Api\Tests\Stubs\UserStub;
-use Dingo\Api\Http\Response\Factory;
+use Afroware\Restfy\Tests\Stubs\UserStub;
+use Afroware\Restfy\Http\Response\Factory;
 use Illuminate\Pagination\Paginator;
-use Dingo\Api\Transformer\Factory as TransformerFactory;
+use Afroware\Restfy\Transformer\Factory as TransformerFactory;
 
 class FactoryTest extends PHPUnit_Framework_TestCase
 {
@@ -79,7 +79,7 @@ class FactoryTest extends PHPUnit_Framework_TestCase
 
     public function testMakingCollectionResponseWithThreeParameters()
     {
-        $this->transformer->shouldReceive('register')->twice()->with('Dingo\Api\Tests\Stubs\UserStub', 'test', [], Mockery::on(function ($param) {
+        $this->transformer->shouldReceive('register')->twice()->with('Afroware\Restfy\Tests\Stubs\UserStub', 'test', [], Mockery::on(function ($param) {
             return $param instanceof \Closure;
         }));
 
@@ -103,15 +103,15 @@ class FactoryTest extends PHPUnit_Framework_TestCase
 
     public function testMakingItemResponseWithThreeParameters()
     {
-        $this->transformer->shouldReceive('register')->twice()->with('Dingo\Api\Tests\Stubs\UserStub', 'test', [], Mockery::on(function ($param) {
+        $this->transformer->shouldReceive('register')->twice()->with('Afroware\Restfy\Tests\Stubs\UserStub', 'test', [], Mockery::on(function ($param) {
             return $param instanceof \Closure;
         }));
 
-        $this->assertInstanceOf('Dingo\Api\Tests\Stubs\UserStub', $this->factory->item(new UserStub('Jason'), 'test', function ($resource, $fractal) {
+        $this->assertInstanceOf('Afroware\Restfy\Tests\Stubs\UserStub', $this->factory->item(new UserStub('Jason'), 'test', function ($resource, $fractal) {
             $this->assertInstanceOf('League\Fractal\Resource\Item', $resource);
             $this->assertInstanceOf('League\Fractal\Manager', $fractal);
         })->getOriginalContent());
-        $this->assertInstanceOf('Dingo\Api\Tests\Stubs\UserStub', $this->factory->withItem(new UserStub('Jason'), 'test', function ($resource, $fractal) {
+        $this->assertInstanceOf('Afroware\Restfy\Tests\Stubs\UserStub', $this->factory->withItem(new UserStub('Jason'), 'test', function ($resource, $fractal) {
             $this->assertInstanceOf('League\Fractal\Resource\Item', $resource);
             $this->assertInstanceOf('League\Fractal\Manager', $fractal);
         })->getOriginalContent());

@@ -1,6 +1,6 @@
 <?php
 
-namespace Dingo\Api\Contract\Http;
+namespace Afroware\Restfy\Contract\Http;
 
 use Illuminate\Http\Request as IlluminateRequest;
 

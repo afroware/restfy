@@ -1,12 +1,12 @@
 <?php
 
-namespace Dingo\Api\Auth\Provider;
+namespace Afroware\Restfy\Auth\Provider;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
-abstract class Authorization implements \Dingo\Api\Contract\Auth\Provider
+abstract class Authorization implements \Afroware\Restfy\Contract\Auth\Provider
 {
     /**
      * Array of provider specific options.

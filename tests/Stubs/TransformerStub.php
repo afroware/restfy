@@ -1,11 +1,11 @@
 <?php
 
-namespace Dingo\Api\Tests\Stubs;
+namespace Afroware\Restfy\Tests\Stubs;
 
-use Dingo\Api\Http\Request;
+use Afroware\Restfy\Http\Request;
 use Illuminate\Support\Collection;
-use Dingo\Api\Transformer\Binding;
-use Dingo\Api\Contract\Transformer\Adapter;
+use Afroware\Restfy\Transformer\Binding;
+use Afroware\Restfy\Contract\Transformer\Adapter;
 
 class TransformerStub implements Adapter
 {

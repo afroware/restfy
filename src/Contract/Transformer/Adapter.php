@@ -1,9 +1,9 @@
 <?php
 
-namespace Dingo\Api\Contract\Transformer;
+namespace Afroware\Restfy\Contract\Transformer;
 
-use Dingo\Api\Http\Request;
-use Dingo\Api\Transformer\Binding;
+use Afroware\Restfy\Http\Request;
+use Afroware\Restfy\Transformer\Binding;
 
 interface Adapter
 {
@@ -12,8 +12,8 @@ interface Adapter
      *
      * @param mixed                          $response
      * @param object                         $transformer
-     * @param \Dingo\Api\Transformer\Binding $binding
-     * @param \Dingo\Api\Http\Request        $request
+     * @param \Afroware\Restfy\Transformer\Binding $binding
+     * @param \Afroware\Restfy\Http\Request        $request
      *
      * @return array
      */

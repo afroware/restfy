@@ -1,6 +1,6 @@
 <?php
 
-namespace Dingo\Api\Tests\Exception;
+namespace Afroware\Restfy\Tests\Exception;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -8,9 +8,9 @@ use Mockery as m;
 use RuntimeException;
 use Illuminate\Http\Response;
 use PHPUnit_Framework_TestCase;
-use Dingo\Api\Exception\Handler;
-use Dingo\Api\Http\Request as ApiRequest;
-use Dingo\Api\Exception\ResourceException;
+use Afroware\Restfy\Exception\Handler;
+use Afroware\Restfy\Http\Request as RestfyRequest;
+use Afroware\Restfy\Exception\ResourceException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class HandlerTest extends PHPUnit_Framework_TestCase
@@ -178,7 +178,7 @@ class HandlerTest extends PHPUnit_Framework_TestCase
 
     public function testExceptionsHandledByRenderAreReroutedThroughHandler()
     {
-        $request = ApiRequest::create('foo', 'GET');
+        $request = RestfyRequest::create('foo', 'GET');
 
         $exception = new HttpException(404);
 

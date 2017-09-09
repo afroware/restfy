@@ -1,35 +1,35 @@
 <?php
 
-namespace Dingo\Api\Http\Middleware;
+namespace Afroware\Restfy\Http\Middleware;
 
 use Closure;
-use Dingo\Api\Http\Response;
-use Dingo\Api\Routing\Router;
-use Dingo\Api\Http\InternalRequest;
-use Dingo\Api\Http\RateLimit\Handler;
-use Dingo\Api\Exception\RateLimitExceededException;
+use Afroware\Restfy\Http\Response;
+use Afroware\Restfy\Routing\Router;
+use Afroware\Restfy\Http\InternalRequest;
+use Afroware\Restfy\Http\RateLimit\Handler;
+use Afroware\Restfy\Exception\RateLimitExceededException;
 
 class RateLimit
 {
     /**
      * Router instance.
      *
-     * @var \Dingo\Api\Routing\Router
+     * @var \Afroware\Restfy\Routing\Router
      */
     protected $router;
 
     /**
      * Rate limit handler instance.
      *
-     * @var \Dingo\Api\Http\RateLimit\Handler
+     * @var \Afroware\Restfy\Http\RateLimit\Handler
      */
     protected $handler;
 
     /**
      * Create a new rate limit middleware instance.
      *
-     * @param \Dingo\Api\Routing\Router         $router
-     * @param \Dingo\Api\Http\RateLimit\Handler $handler
+     * @param \Afroware\Restfy\Routing\Router         $router
+     * @param \Afroware\Restfy\Http\RateLimit\Handler $handler
      *
      * @return void
      */
@@ -42,7 +42,7 @@ class RateLimit
     /**
      * Perform rate limiting before a request is executed.
      *
-     * @param \Dingo\Api\Http\Request $request
+     * @param \Afroware\Restfy\Http\Request $request
      * @param \Closure                $next
      *
      * @throws \Symfony\Component\HttpKernel\Exception\HttpException
@@ -79,9 +79,9 @@ class RateLimit
     /**
      * Send the response with the rate limit headers.
      *
-     * @param \Dingo\Api\Http\Response $response
+     * @param \Afroware\Restfy\Http\Response $response
      *
-     * @return \Dingo\Api\Http\Response
+     * @return \Afroware\Restfy\Http\Response
      */
     protected function responseWithHeaders($response)
     {

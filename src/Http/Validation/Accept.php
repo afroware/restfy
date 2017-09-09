@@ -1,10 +1,10 @@
 <?php
 
-namespace Dingo\Api\Http\Validation;
+namespace Afroware\Restfy\Http\Validation;
 
 use Illuminate\Http\Request;
-use Dingo\Api\Contract\Http\Validator;
-use Dingo\Api\Http\Parser\Accept as AcceptParser;
+use Afroware\Restfy\Contract\Http\Validator;
+use Afroware\Restfy\Http\Parser\Accept as AcceptParser;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class Accept implements Validator
@@ -12,7 +12,7 @@ class Accept implements Validator
     /**
      * Accept parser instance.
      *
-     * @var \Dingo\Api\Http\Parser\Accept
+     * @var \Afroware\Restfy\Http\Parser\Accept
      */
     protected $accept;
 
@@ -26,7 +26,7 @@ class Accept implements Validator
     /**
      * Create a new accept validator instance.
      *
-     * @param \Dingo\Api\Http\Parser\Accept $accept
+     * @param \Afroware\Restfy\Http\Parser\Accept $accept
      * @param bool                          $strict
      *
      * @return void

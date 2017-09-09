@@ -1,17 +1,17 @@
 <?php
 
-namespace Dingo\Api\Provider;
+namespace Afroware\Restfy\Provider;
 
 use RuntimeException;
-use Dingo\Api\Auth\Auth;
-use Dingo\Api\Dispatcher;
-use Dingo\Api\Http\Request;
-use Dingo\Api\Http\Response;
-use Dingo\Api\Console\Command;
-use Dingo\Api\Exception\Handler as ExceptionHandler;
-use Dingo\Api\Transformer\Factory as TransformerFactory;
+use Afroware\Restfy\Auth\Auth;
+use Afroware\Restfy\Dispatcher;
+use Afroware\Restfy\Http\Request;
+use Afroware\Restfy\Http\Response;
+use Afroware\Restfy\Console\Command;
+use Afroware\Restfy\Exception\Handler as ExceptionHandler;
+use Afroware\Restfy\Transformer\Factory as TransformerFactory;
 
-class DingoServiceProvider extends ServiceProvider
+class AfrowareServiceProvider extends ServiceProvider
 {
     /**
      * Boot the service provider.
@@ -22,17 +22,17 @@ class DingoServiceProvider extends ServiceProvider
     {
         $this->setResponseStaticInstances();
 
-        Request::setAcceptParser($this->app['Dingo\Api\Http\Parser\Accept']);
+        Request::setAcceptParser($this->app['Afroware\Restfy\Http\Parser\Accept']);
 
-        $this->app->rebinding('api.routes', function ($app, $routes) {
-            $app['api.url']->setRouteCollections($routes);
+        $this->app->rebinding('restfy.routes', function ($app, $routes) {
+            $app['restfy.url']->setRouteCollections($routes);
         });
     }
 
     protected function setResponseStaticInstances()
     {
         Response::setFormatters($this->config('formats'));
-        Response::setTransformer($this->app['api.transformer']);
+        Response::setTransformer($this->app['restfy.transformer']);
         Response::setEventDispatcher($this->app['events']);
     }
 
@@ -63,8 +63,8 @@ class DingoServiceProvider extends ServiceProvider
 
         if (class_exists('Illuminate\Foundation\Application', false)) {
             $this->commands([
-                'Dingo\Api\Console\Command\Cache',
-                'Dingo\Api\Console\Command\Routes',
+                'Afroware\Restfy\Console\Command\Cache',
+                'Afroware\Restfy\Console\Command\Routes',
             ]);
         }
     }
@@ -76,10 +76,10 @@ class DingoServiceProvider extends ServiceProvider
      */
     protected function registerConfig()
     {
-        $this->mergeConfigFrom(realpath(__DIR__.'/../../config/api.php'), 'api');
+        $this->mergeConfigFrom(realpath(__DIR__.'/../../config/restfy.php'), 'restfy');
 
         if (! $this->app->runningInConsole() && empty($this->config('prefix')) && empty($this->config('domain'))) {
-            throw new RuntimeException('Unable to boot ApiServiceProvider, configure an API domain or prefix.');
+            throw new RuntimeException('Unable to boot RestfyServiceProvider, configure an API domain or prefix.');
         }
     }
 
@@ -91,17 +91,17 @@ class DingoServiceProvider extends ServiceProvider
     protected function registerClassAliases()
     {
         $aliases = [
-            'Dingo\Api\Http\Request' => 'Dingo\Api\Contract\Http\Request',
-            'api.dispatcher' => 'Dingo\Api\Dispatcher',
-            'api.http.validator' => 'Dingo\Api\Http\RequestValidator',
-            'api.http.response' => 'Dingo\Api\Http\Response\Factory',
-            'api.router' => 'Dingo\Api\Routing\Router',
-            'api.router.adapter' => 'Dingo\Api\Contract\Routing\Adapter',
-            'api.auth' => 'Dingo\Api\Auth\Auth',
-            'api.limiting' => 'Dingo\Api\Http\RateLimit\Handler',
-            'api.transformer' => 'Dingo\Api\Transformer\Factory',
-            'api.url' => 'Dingo\Api\Routing\UrlGenerator',
-            'api.exception' => ['Dingo\Api\Exception\Handler', 'Dingo\Api\Contract\Debug\ExceptionHandler'],
+            'Afroware\Restfy\Http\Request' => 'Afroware\Restfy\Contract\Http\Request',
+            'restfy.dispatcher' => 'Afroware\Restfy\Dispatcher',
+            'restfy.http.validator' => 'Afroware\Restfy\Http\RequestValidator',
+            'restfy.http.response' => 'Afroware\Restfy\Http\Response\Factory',
+            'restfy.router' => 'Afroware\Restfy\Routing\Router',
+            'restfy.router.adapter' => 'Afroware\Restfy\Contract\Routing\Adapter',
+            'restfy.auth' => 'Afroware\Restfy\Auth\Auth',
+            'restfy.limiting' => 'Afroware\Restfy\Http\RateLimit\Handler',
+            'restfy.transformer' => 'Afroware\Restfy\Transformer\Factory',
+            'restfy.url' => 'Afroware\Restfy\Routing\UrlGenerator',
+            'restfy.exception' => ['Afroware\Restfy\Exception\Handler', 'Afroware\Restfy\Contract\Debug\ExceptionHandler'],
         ];
 
         foreach ($aliases as $key => $aliases) {
@@ -118,7 +118,7 @@ class DingoServiceProvider extends ServiceProvider
      */
     protected function registerExceptionHandler()
     {
-        $this->app->singleton('api.exception', function ($app) {
+        $this->app->singleton('restfy.exception', function ($app) {
             return new ExceptionHandler($app['Illuminate\Contracts\Debug\ExceptionHandler'], $this->config('errorFormat'), $this->config('debug'));
         });
     }
@@ -130,8 +130,8 @@ class DingoServiceProvider extends ServiceProvider
      */
     public function registerDispatcher()
     {
-        $this->app->singleton('api.dispatcher', function ($app) {
-            $dispatcher = new Dispatcher($app, $app['files'], $app['Dingo\Api\Routing\Router'], $app['Dingo\Api\Auth\Auth']);
+        $this->app->singleton('restfy.dispatcher', function ($app) {
+            $dispatcher = new Dispatcher($app, $app['files'], $app['Afroware\Restfy\Routing\Router'], $app['Afroware\Restfy\Auth\Auth']);
 
             $dispatcher->setSubtype($this->config('subtype'));
             $dispatcher->setStandardsTree($this->config('standardsTree'));
@@ -151,8 +151,8 @@ class DingoServiceProvider extends ServiceProvider
      */
     protected function registerAuth()
     {
-        $this->app->singleton('api.auth', function ($app) {
-            return new Auth($app['Dingo\Api\Routing\Router'], $app, $this->config('auth'));
+        $this->app->singleton('restfy.auth', function ($app) {
+            return new Auth($app['Afroware\Restfy\Routing\Router'], $app, $this->config('auth'));
         });
     }
 
@@ -163,7 +163,7 @@ class DingoServiceProvider extends ServiceProvider
      */
     protected function registerTransformer()
     {
-        $this->app->singleton('api.transformer', function ($app) {
+        $this->app->singleton('restfy.transformer', function ($app) {
             return new TransformerFactory($app, $this->config('transformer'));
         });
     }
@@ -175,16 +175,16 @@ class DingoServiceProvider extends ServiceProvider
      */
     protected function registerDocsCommand()
     {
-        $this->app->singleton('Dingo\Api\Console\Command\Docs', function ($app) {
+        $this->app->singleton('Afroware\Restfy\Console\Command\Docs', function ($app) {
             return new Command\Docs(
-                $app['Dingo\Api\Routing\Router'],
-                $app['Dingo\Blueprint\Blueprint'],
-                $app['Dingo\Blueprint\Writer'],
+                $app['Afroware\Restfy\Routing\Router'],
+                $app['Afroware\Blueprint\Blueprint'],
+                $app['Afroware\Blueprint\Writer'],
                 $this->config('name'),
                 $this->config('version')
             );
         });
 
-        $this->commands(['Dingo\Api\Console\Command\Docs']);
+        $this->commands(['Afroware\Restfy\Console\Command\Docs']);
     }
 }

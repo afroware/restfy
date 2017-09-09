@@ -1,6 +1,6 @@
 <?php
 
-namespace Dingo\Api\Provider;
+namespace Afroware\Restfy\Provider;
 
 use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
 
@@ -25,7 +25,7 @@ abstract class ServiceProvider extends IlluminateServiceProvider
      */
     protected function config($item, $instantiate = true)
     {
-        $value = $this->app['config']->get('api.'.$item);
+        $value = $this->app['config']->get('restfy.'.$item);
 
         if (is_array($value)) {
             return $instantiate ? $this->instantiateConfigValues($item, $value) : $value;

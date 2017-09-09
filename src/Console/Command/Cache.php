@@ -1,6 +1,6 @@
 <?php
 
-namespace Dingo\Api\Console\Command;
+namespace Afroware\Restfy\Console\Command;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
@@ -13,7 +13,7 @@ class Cache extends Command
      *
      * @var string
      */
-    public $signature = 'api:cache';
+    public $signature = 'restfy:cache';
 
     /**
      * The console command description.
@@ -56,15 +56,15 @@ class Cache extends Command
 
         $this->call('route:cache');
 
-        $routes = $app['api.router']->getAdapterRoutes();
+        $routes = $app['restfy.router']->getAdapterRoutes();
 
         foreach ($routes as $collection) {
             foreach ($collection as $route) {
-                $app['api.router.adapter']->prepareRouteForSerialization($route);
+                $app['restfy.router.adapter']->prepareRouteForSerialization($route);
             }
         }
 
-        $stub = "app('api.router')->setAdapterRoutes(unserialize(base64_decode('{{routes}}')));";
+        $stub = "app('restfy.router')->setAdapterRoutes(unserialize(base64_decode('{{routes}}')));";
         $path = $this->laravel->getCachedRoutesPath();
 
         if (! $this->files->exists($path)) {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Dingo\Api\Routing;
+namespace Afroware\Restfy\Routing;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\UrlGenerator as IlluminateUrlGenerator;
@@ -17,7 +17,7 @@ class UrlGenerator extends IlluminateUrlGenerator
     /**
      * Create a new URL generator instance.
      *
-     * @param \Dingo\Api\Http\Request $request
+     * @param \Afroware\Restfy\Http\Request $request
      *
      * @return void
      */
@@ -31,7 +31,7 @@ class UrlGenerator extends IlluminateUrlGenerator
      *
      * @param string $version
      *
-     * @return \Dingo\Api\Routing\UrlGenerator
+     * @return \Afroware\Restfy\Routing\UrlGenerator
      */
     public function version($version)
     {

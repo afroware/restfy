@@ -1,14 +1,14 @@
 <?php
 
-namespace Dingo\Api\Tests\Http\RateLimit;
+namespace Afroware\Restfy\Tests\Http\RateLimit;
 
-use Dingo\Api\Http\Request;
+use Afroware\Restfy\Http\Request;
 use PHPUnit_Framework_TestCase;
 use Illuminate\Cache\CacheManager;
 use Illuminate\Container\Container;
-use Dingo\Api\Http\RateLimit\Handler;
-use Dingo\Api\Tests\Stubs\ThrottleStub;
-use Dingo\Api\Http\RateLimit\Throttle\Route;
+use Afroware\Restfy\Http\RateLimit\Handler;
+use Afroware\Restfy\Tests\Stubs\ThrottleStub;
+use Afroware\Restfy\Http\RateLimit\Throttle\Route;
 
 class HandlerTest extends PHPUnit_Framework_TestCase
 {

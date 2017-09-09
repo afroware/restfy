@@ -1,6 +1,6 @@
 <?php
 
-namespace Dingo\Api\Tests\Stubs;
+namespace Afroware\Restfy\Tests\Stubs;
 
 use Illuminate\Container\Container;
 use Illuminate\Contracts\Foundation\Application;

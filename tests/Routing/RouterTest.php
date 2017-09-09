@@ -1,19 +1,19 @@
 <?php
 
-namespace Dingo\Api\Tests\Routing;
+namespace Afroware\Restfy\Tests\Routing;
 
 use Mockery as m;
-use Dingo\Api\Http;
-use Dingo\Api\Routing\Router;
+use Afroware\Restfy\Http;
+use Afroware\Restfy\Routing\Router;
 use Illuminate\Container\Container;
-use Dingo\Api\Tests\Stubs\ThrottleStub;
+use Afroware\Restfy\Tests\Stubs\ThrottleStub;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class RouterTest extends Adapter\BaseAdapterTest
 {
     public function getAdapterInstance()
     {
-        return $this->container->make('Dingo\Api\Tests\Stubs\RoutingAdapterStub');
+        return $this->container->make('Afroware\Restfy\Tests\Stubs\RoutingAdapterStub');
     }
 
     public function getContainerInstance()
@@ -41,17 +41,17 @@ class RouterTest extends Adapter\BaseAdapterTest
             });
         });
 
-        $request = $this->createRequest('foo', 'GET', ['accept' => 'application/vnd.api.v1+json']);
+        $request = $this->createRequest('foo', 'GET', ['accept' => 'application/vnd.restfy.v1+json']);
         $this->router->dispatch($request);
 
-        $request = $this->createRequest('baz', 'GET', ['accept' => 'application/vnd.api.v1+json']);
+        $request = $this->createRequest('baz', 'GET', ['accept' => 'application/vnd.restfy.v1+json']);
         $this->router->dispatch($request);
 
-        $this->router->version('v2', ['providers' => 'foo', 'throttle' => new ThrottleStub(['limit' => 10, 'expires' => 15]), 'namespace' => 'Dingo\Api\Tests'], function () {
+        $this->router->version('v2', ['providers' => 'foo', 'throttle' => new ThrottleStub(['limit' => 10, 'expires' => 15]), 'namespace' => 'Afroware\Restfy\Tests'], function () {
             $this->router->get('foo', 'Stubs\RoutingControllerStub@index');
         });
 
-        $request = $this->createRequest('foo', 'GET', ['accept' => 'application/vnd.api.v2+json']);
+        $request = $this->createRequest('foo', 'GET', ['accept' => 'application/vnd.restfy.v2+json']);
         $this->router->dispatch($request);
 
         $route = $this->router->getCurrentRoute();
@@ -60,20 +60,20 @@ class RouterTest extends Adapter\BaseAdapterTest
         $this->assertSame(['foo', 'red', 'black'], $route->getAuthenticationProviders());
         $this->assertSame(10, $route->getRateLimit());
         $this->assertSame(20, $route->getRateLimitExpiration());
-        $this->assertInstanceOf('Dingo\Api\Tests\Stubs\BasicThrottleStub', $route->getThrottle());
+        $this->assertInstanceOf('Afroware\Restfy\Tests\Stubs\BasicThrottleStub', $route->getThrottle());
     }
 
     public function testGroupAsPrefixesRouteAs()
     {
-        $this->router->version('v1', ['as' => 'api'], function ($api) {
-            $api->get('users', ['as' => 'users', function () {
+        $this->router->version('v1', ['as' => 'restfy'], function ($restfy) {
+            $restfy->get('users', ['as' => 'users', function () {
                 return 'foo';
             }]);
         });
 
         $routes = $this->router->getRoutes('v1');
 
-        $this->assertInstanceOf('Dingo\Api\Routing\Route', $routes->getByName('api.users'));
+        $this->assertInstanceOf('Afroware\Restfy\Routing\Route', $routes->getByName('restfy.users'));
     }
 
     /**
@@ -89,8 +89,8 @@ class RouterTest extends Adapter\BaseAdapterTest
 
     public function testMatchRoutes()
     {
-        $this->router->version('v1', function ($api) {
-            $api->match(['get', 'post'], 'foo', function () {
+        $this->router->version('v1', function ($restfy) {
+            $restfy->match(['get', 'post'], 'foo', function () {
                 return 'bar';
             });
         });
@@ -98,14 +98,14 @@ class RouterTest extends Adapter\BaseAdapterTest
         $this->router->setConditionalRequest(false);
 
         $response = $this->router->dispatch(
-            $request = $this->createRequest('foo', 'GET', ['accept' => 'application/vnd.api.v1+json'])
+            $request = $this->createRequest('foo', 'GET', ['accept' => 'application/vnd.restfy.v1+json'])
         );
 
         $this->assertSame(200, $response->getStatusCode());
         $this->assertSame('bar', $response->getContent());
 
         $response = $this->router->dispatch(
-            $request = $this->createRequest('foo', 'POST', ['accept' => 'application/vnd.api.v1+json'])
+            $request = $this->createRequest('foo', 'POST', ['accept' => 'application/vnd.restfy.v1+json'])
         );
 
         $this->assertSame(200, $response->getStatusCode());
@@ -114,8 +114,8 @@ class RouterTest extends Adapter\BaseAdapterTest
 
     public function testAnyRoutes()
     {
-        $this->router->version('v1', function ($api) {
-            $api->any('foo', function () {
+        $this->router->version('v1', function ($restfy) {
+            $restfy->any('foo', function () {
                 return 'bar';
             });
         });
@@ -123,28 +123,28 @@ class RouterTest extends Adapter\BaseAdapterTest
         $this->router->setConditionalRequest(false);
 
         $response = $this->router->dispatch(
-            $request = $this->createRequest('foo', 'GET', ['accept' => 'application/vnd.api.v1+json'])
+            $request = $this->createRequest('foo', 'GET', ['accept' => 'application/vnd.restfy.v1+json'])
         );
 
         $this->assertSame(200, $response->getStatusCode());
         $this->assertSame('bar', $response->getContent());
 
         $response = $this->router->dispatch(
-            $request = $this->createRequest('foo', 'POST', ['accept' => 'application/vnd.api.v1+json'])
+            $request = $this->createRequest('foo', 'POST', ['accept' => 'application/vnd.restfy.v1+json'])
         );
 
         $this->assertSame(200, $response->getStatusCode());
         $this->assertSame('bar', $response->getContent());
 
         $response = $this->router->dispatch(
-            $request = $this->createRequest('foo', 'PATCH', ['accept' => 'application/vnd.api.v1+json'])
+            $request = $this->createRequest('foo', 'PATCH', ['accept' => 'application/vnd.restfy.v1+json'])
         );
 
         $this->assertSame(200, $response->getStatusCode());
         $this->assertSame('bar', $response->getContent());
 
         $response = $this->router->dispatch(
-            $request = $this->createRequest('foo', 'DELETE', ['accept' => 'application/vnd.api.v1+json'])
+            $request = $this->createRequest('foo', 'DELETE', ['accept' => 'application/vnd.restfy.v1+json'])
         );
 
         $this->assertSame(200, $response->getStatusCode());
@@ -162,7 +162,7 @@ class RouterTest extends Adapter\BaseAdapterTest
         $this->router->setConditionalRequest(false);
 
         $response = $this->router->dispatch(
-            $request = $this->createRequest('foo', 'GET', ['accept' => 'application/vnd.api.v1+json'])
+            $request = $this->createRequest('foo', 'GET', ['accept' => 'application/vnd.restfy.v1+json'])
         );
 
         $this->assertSame(200, $response->getStatusCode());
@@ -178,7 +178,7 @@ class RouterTest extends Adapter\BaseAdapterTest
 
         $request = $this->createRequest('foo', 'GET', [
             'if-none-match' => '"'.sha1('bar').'"',
-            'accept' => 'application/vnd.api.v1+json',
+            'accept' => 'application/vnd.restfy.v1+json',
         ]);
 
         $response = $this->router->dispatch($request);
@@ -189,7 +189,7 @@ class RouterTest extends Adapter\BaseAdapterTest
 
         $request = $this->createRequest('foo', 'GET', [
             'if-none-match' => '123456789',
-            'accept' => 'application/vnd.api.v1+json',
+            'accept' => 'application/vnd.restfy.v1+json',
         ]);
 
         $response = $this->router->dispatch($request);
@@ -211,7 +211,7 @@ class RouterTest extends Adapter\BaseAdapterTest
         });
 
         $response = $this->router->dispatch(
-            $this->createRequest('foo', 'GET', ['accept' => 'application/vnd.api.v1+json'])
+            $this->createRequest('foo', 'GET', ['accept' => 'application/vnd.restfy.v1+json'])
         );
 
         $this->assertSame(200, $response->getStatusCode());
@@ -233,7 +233,7 @@ class RouterTest extends Adapter\BaseAdapterTest
         $response = $this->router->dispatch(
             $this->createRequest('foo', 'GET', [
                 'if-none-match' => '"custom-etag"',
-                'accept' => 'application/vnd.api.v1+json',
+                'accept' => 'application/vnd.restfy.v1+json',
             ])
         );
 
@@ -255,7 +255,7 @@ class RouterTest extends Adapter\BaseAdapterTest
         $this->exception->shouldReceive('report')->once()->with($exception);
         $this->exception->shouldReceive('handle')->once()->with($exception)->andReturn(new Http\Response('exception'));
 
-        $request = $this->createRequest('foo', 'GET', ['accept' => 'application/vnd.api.v1+json']);
+        $request = $this->createRequest('foo', 'GET', ['accept' => 'application/vnd.restfy.v1+json']);
 
         $this->assertSame('exception', $this->router->dispatch($request)->getContent(), 'Router did not delegate exception handling.');
     }
@@ -307,7 +307,7 @@ class RouterTest extends Adapter\BaseAdapterTest
 
     public function testGroupNamespacesAreConcatenated()
     {
-        $this->router->version('v1', ['namespace' => 'Dingo\Api'], function () {
+        $this->router->version('v1', ['namespace' => 'Afroware\Restfy'], function () {
             $this->router->group(['namespace' => 'Tests\Stubs'], function () {
                 $this->router->get('foo', 'RoutingControllerStub@getIndex');
             });
@@ -339,7 +339,7 @@ class RouterTest extends Adapter\BaseAdapterTest
 
     public function testCurrentRouteAction()
     {
-        $this->router->version('v1', ['namespace' => 'Dingo\Api\Tests\Stubs'], function () {
+        $this->router->version('v1', ['namespace' => 'Afroware\Restfy\Tests\Stubs'], function () {
             $this->router->get('foo', 'RoutingControllerStub@getIndex');
         });
 
@@ -348,10 +348,10 @@ class RouterTest extends Adapter\BaseAdapterTest
         $this->router->dispatch($request);
 
         $this->assertFalse($this->router->currentRouteUses('foo'));
-        $this->assertTrue($this->router->currentRouteUses('Dingo\Api\Tests\Stubs\RoutingControllerStub@getIndex'));
+        $this->assertTrue($this->router->currentRouteUses('Afroware\Restfy\Tests\Stubs\RoutingControllerStub@getIndex'));
         $this->assertFalse($this->router->uses('foo*'));
         $this->assertTrue($this->router->uses('*'));
-        $this->assertTrue($this->router->uses('Dingo\Api\Tests\Stubs\RoutingControllerStub@*'));
+        $this->assertTrue($this->router->uses('Afroware\Restfy\Tests\Stubs\RoutingControllerStub@*'));
     }
 
     public function testRoutePatternsAreAppliedCorrectly()
@@ -360,8 +360,8 @@ class RouterTest extends Adapter\BaseAdapterTest
         $adapter->pattern('bar', '[0-9]+');
 
         $this->router = new Router($adapter, $this->exception, $this->container, null, null);
-        $this->router->version('v1', function ($api) {
-            $api->any('foo/{bar}', function () {
+        $this->router->version('v1', function ($restfy) {
+            $restfy->any('foo/{bar}', function () {
                 return 'bar';
             });
         });
@@ -372,7 +372,7 @@ class RouterTest extends Adapter\BaseAdapterTest
         $this->exception->shouldReceive('handle')->with(m::type('Symfony\Component\HttpKernel\Exception\HttpException'))->andReturn(new Http\Response('Not Found!', 404));
 
         $response = $this->router->dispatch(
-            $request = $this->createRequest('foo/abc', 'GET', ['accept' => 'application/vnd.api.v1+json'])
+            $request = $this->createRequest('foo/abc', 'GET', ['accept' => 'application/vnd.restfy.v1+json'])
         );
 
         $this->assertSame(404, $response->getStatusCode());

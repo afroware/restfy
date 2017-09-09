@@ -1,13 +1,13 @@
 <?php
 
-namespace Dingo\Api\Tests\Http\Response\Format;
+namespace Afroware\Restfy\Tests\Http\Response\Format;
 
 use Mockery;
-use Dingo\Api\Http\Response;
+use Afroware\Restfy\Http\Response;
 use PHPUnit_Framework_TestCase;
 use Illuminate\Support\MessageBag;
-use Dingo\Api\Http\Response\Format\Json;
-use Dingo\Api\Tests\Stubs\EloquentModelStub;
+use Afroware\Restfy\Http\Response\Format\Json;
+use Afroware\Restfy\Tests\Stubs\EloquentModelStub;
 use Illuminate\Database\Eloquent\Collection;
 
 class JsonTest extends PHPUnit_Framework_TestCase

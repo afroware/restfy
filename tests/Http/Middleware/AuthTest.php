@@ -1,17 +1,17 @@
 <?php
 
-namespace Dingo\Api\Tests\Http\Middleware;
+namespace Afroware\Restfy\Tests\Http\Middleware;
 
 use Mockery as m;
-use Dingo\Api\Auth\Auth;
-use Dingo\Api\Http\Request;
-use Dingo\Api\Routing\Route;
-use Dingo\Api\Routing\Router;
+use Afroware\Restfy\Auth\Auth;
+use Afroware\Restfy\Http\Request;
+use Afroware\Restfy\Routing\Route;
+use Afroware\Restfy\Routing\Router;
 use PHPUnit_Framework_TestCase;
 use Illuminate\Container\Container;
-use Dingo\Api\Tests\Stubs\RoutingAdapterStub;
+use Afroware\Restfy\Tests\Stubs\RoutingAdapterStub;
 use Illuminate\Routing\Route as IlluminateRoute;
-use Dingo\Api\Http\Middleware\Auth as AuthMiddleware;
+use Afroware\Restfy\Http\Middleware\Auth as AuthMiddleware;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 class AuthTest extends PHPUnit_Framework_TestCase

@@ -1,6 +1,6 @@
 <?php
 
-namespace Dingo\Api\Http\RateLimit\Throttle;
+namespace Afroware\Restfy\Http\RateLimit\Throttle;
 
 use Illuminate\Container\Container;
 

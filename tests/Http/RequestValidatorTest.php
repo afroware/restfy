@@ -1,13 +1,13 @@
 <?php
 
-namespace Dingo\Api\Tests\Http;
+namespace Afroware\Restfy\Tests\Http;
 
 use Illuminate\Http\Request;
 use PHPUnit_Framework_TestCase;
 use Illuminate\Container\Container;
-use Dingo\Api\Http\RequestValidator;
-use Dingo\Api\Tests\Stubs\HttpValidatorStub;
-use Dingo\Api\Http\Parser\Accept as AcceptParser;
+use Afroware\Restfy\Http\RequestValidator;
+use Afroware\Restfy\Tests\Stubs\HttpValidatorStub;
+use Afroware\Restfy\Http\Parser\Accept as AcceptParser;
 
 class RequestValidatorTest extends PHPUnit_Framework_TestCase
 {

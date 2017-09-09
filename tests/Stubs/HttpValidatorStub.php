@@ -1,9 +1,9 @@
 <?php
 
-namespace Dingo\Api\Tests\Stubs;
+namespace Afroware\Restfy\Tests\Stubs;
 
 use Illuminate\Http\Request;
-use Dingo\Api\Contract\Http\Validator;
+use Afroware\Restfy\Contract\Http\Validator;
 
 class HttpValidatorStub implements Validator
 {

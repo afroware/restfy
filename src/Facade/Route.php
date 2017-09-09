@@ -1,6 +1,6 @@
 <?php
 
-namespace Dingo\Api\Facade;
+namespace Afroware\Restfy\Facade;
 
 use Illuminate\Support\Facades\Facade;
 
@@ -13,6 +13,6 @@ class Route extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'api.router';
+        return 'restfy.router';
     }
 }

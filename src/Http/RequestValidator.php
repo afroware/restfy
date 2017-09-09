@@ -1,12 +1,12 @@
 <?php
 
-namespace Dingo\Api\Http;
+namespace Afroware\Restfy\Http;
 
 use Illuminate\Container\Container;
-use Dingo\Api\Http\Validation\Accept;
-use Dingo\Api\Http\Validation\Domain;
-use Dingo\Api\Http\Validation\Prefix;
-use Dingo\Api\Contract\Http\Validator;
+use Afroware\Restfy\Http\Validation\Accept;
+use Afroware\Restfy\Http\Validation\Domain;
+use Afroware\Restfy\Http\Validation\Prefix;
+use Afroware\Restfy\Contract\Http\Validator;
 use Illuminate\Http\Request as IlluminateRequest;
 
 class RequestValidator
@@ -67,7 +67,7 @@ class RequestValidator
     /**
      * Extend the validators.
      *
-     * @param string|\Dingo\Api\Http\Validator $validator
+     * @param string|\Afroware\Restfy\Http\Validator $validator
      *
      * @return void
      */

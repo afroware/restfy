@@ -1,20 +1,20 @@
 <?php
 
-namespace Dingo\Api\Tests\Http\Middleware;
+namespace Afroware\Restfy\Tests\Http\Middleware;
 
 use Mockery as m;
-use Dingo\Api\Http\Request;
-use Dingo\Api\Http\Response;
-use Dingo\Api\Routing\Route;
-use Dingo\Api\Routing\Router;
+use Afroware\Restfy\Http\Request;
+use Afroware\Restfy\Http\Response;
+use Afroware\Restfy\Routing\Route;
+use Afroware\Restfy\Routing\Router;
 use PHPUnit_Framework_TestCase;
 use Illuminate\Cache\CacheManager;
-use Dingo\Api\Http\InternalRequest;
+use Afroware\Restfy\Http\InternalRequest;
 use Illuminate\Container\Container;
-use Dingo\Api\Http\RateLimit\Handler;
-use Dingo\Api\Tests\Stubs\ThrottleStub;
-use Dingo\Api\Http\Middleware\RateLimit;
-use Dingo\Api\Exception\RateLimitExceededException;
+use Afroware\Restfy\Http\RateLimit\Handler;
+use Afroware\Restfy\Tests\Stubs\ThrottleStub;
+use Afroware\Restfy\Http\Middleware\RateLimit;
+use Afroware\Restfy\Exception\RateLimitExceededException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class RateLimitTest extends PHPUnit_Framework_TestCase

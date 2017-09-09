@@ -1,9 +1,9 @@
 {
-    "name": "dingo/api",
+    "name": "afroware/restfy",
     "description": "A RESTful API package for the Laravel and Lumen frameworks.",
     "keywords": [
-        "api",
-        "dingo",
+        "restfy",
+        "afroware",
         "laravel",
         "restful"
     ],
@@ -15,11 +15,11 @@
         }
     ],
     "require": {
-        "php": "^5.5.9 || ^7.0",
-        "dingo/blueprint": "0.2.*",
+        "php": "^7.1",
+        "afroware/blueprint": "dev-master",
         "illuminate/routing": "^5.5",
         "illuminate/support": "^5.5",
-        "league/fractal": ">=0.12.0"
+        "league/fractal": "^0.17"
     },
     "require-dev": {
         "illuminate/auth": "^5.5",
@@ -30,12 +30,11 @@
         "illuminate/filesystem": "^5.5",
         "illuminate/log": "^5.5",
         "illuminate/pagination": "^5.5",
-        "laravel/lumen-framework": "5.5.* || 5.2.*",
-        "lucadegasperi/oauth2-server-laravel": "5.0.*",
-        "mockery/mockery": "~0.9",
-        "phpunit/phpunit": "^4.8 || ^5.0",
+        "laravel/lumen-framework": "^5.5",
+        "phpunit/phpunit": "^6.3",
         "squizlabs/php_codesniffer": "~2.0",
-        "tymon/jwt-auth": "1.0.*"
+        "mockery/mockery": "^0.9",
+        "tymon/jwt-auth": "^0.5.12"
     },
     "suggest": {
         "lucadegasperi/oauth2-server-laravel": "Protect your API with OAuth 2.0.",
@@ -43,7 +42,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Dingo\\Api\\": "src/"
+            "Afroware\\Restfy\\": "src/"
         },
         "files": [
             "src/helpers.php"
@@ -51,12 +50,12 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Dingo\\Api\\Tests\\": "tests/"
+            "Afroware\\Restfy\\Tests\\": "tests/"
         }
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0-dev"
+            "dev-master": "1.0.0-dev"
         }
     },
     "minimum-stability": "dev",

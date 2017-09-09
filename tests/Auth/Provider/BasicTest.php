@@ -1,12 +1,12 @@
 <?php
 
-namespace Dingo\Api\Tests\Auth\Provider;
+namespace Afroware\Restfy\Tests\Auth\Provider;
 
 use Mockery as m;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use PHPUnit_Framework_TestCase;
-use Dingo\Api\Auth\Provider\Basic;
+use Afroware\Restfy\Auth\Provider\Basic;
 
 class BasicTest extends PHPUnit_Framework_TestCase
 {
@@ -30,7 +30,7 @@ class BasicTest extends PHPUnit_Framework_TestCase
 
         $this->auth->shouldReceive('onceBasic')->once()->with('email')->andReturn(new Response('', 401));
 
-        $this->provider->authenticate($request, m::mock('Dingo\Api\Routing\Route'));
+        $this->provider->authenticate($request, m::mock('Afroware\Restfy\Routing\Route'));
     }
 
     public function testValidCredentialsReturnsUser()
@@ -40,6 +40,6 @@ class BasicTest extends PHPUnit_Framework_TestCase
         $this->auth->shouldReceive('onceBasic')->once()->with('email')->andReturn(null);
         $this->auth->shouldReceive('user')->once()->andReturn('foo');
 
-        $this->assertSame('foo', $this->provider->authenticate($request, m::mock('Dingo\Api\Routing\Route')));
+        $this->assertSame('foo', $this->provider->authenticate($request, m::mock('Afroware\Restfy\Routing\Route')));
     }
 }

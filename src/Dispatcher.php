@@ -1,14 +1,14 @@
 <?php
 
-namespace Dingo\Api;
+namespace Afroware\Restfy;
 
-use Dingo\Api\Auth\Auth;
-use Dingo\Api\Routing\Router;
+use Afroware\Restfy\Auth\Auth;
+use Afroware\Restfy\Routing\Router;
 use Illuminate\Container\Container;
-use Dingo\Api\Http\InternalRequest;
+use Afroware\Restfy\Http\InternalRequest;
 use Illuminate\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Cookie;
-use Dingo\Api\Exception\InternalHttpException;
+use Afroware\Restfy\Exception\InternalHttpException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Illuminate\Support\Facades\Request as RequestFacade;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
@@ -32,14 +32,14 @@ class Dispatcher
     /**
      * Router instance.
      *
-     * @var \Dingo\Api\Routing\Router
+     * @var \Afroware\Restfy\Routing\Router
      */
     protected $router;
 
     /**
      * Auth instance.
      *
-     * @var \Dingo\Api\Auth\Auth
+     * @var \Afroware\Restfy\Auth\Auth
      */
     protected $auth;
 
@@ -167,8 +167,8 @@ class Dispatcher
      *
      * @param \Illuminate\Container\Container   $container
      * @param \Illuminate\Filesystem\Filesystem $files
-     * @param \Dingo\Api\Routing\Router         $router
-     * @param \Dingo\Api\Auth\Auth              $auth
+     * @param \Afroware\Restfy\Routing\Router         $router
+     * @param \Afroware\Restfy\Auth\Auth              $auth
      *
      * @return void
      */
@@ -197,7 +197,7 @@ class Dispatcher
      *
      * @param array $files
      *
-     * @return \Dingo\Api\Dispatcher
+     * @return \Afroware\Restfy\Dispatcher
      */
     public function attach(array $files)
     {
@@ -223,7 +223,7 @@ class Dispatcher
      *
      * @param mixed $user
      *
-     * @return \Dingo\Api\Dispatcher
+     * @return \Afroware\Restfy\Dispatcher
      */
     public function be($user)
     {
@@ -237,7 +237,7 @@ class Dispatcher
      *
      * @param string|array $content
      *
-     * @return \Dingo\Api\Dispatcher
+     * @return \Afroware\Restfy\Dispatcher
      */
     public function json($content)
     {
@@ -255,7 +255,7 @@ class Dispatcher
      *
      * @param string $domain
      *
-     * @return \Dingo\Api\Dispatcher
+     * @return \Afroware\Restfy\Dispatcher
      */
     public function on($domain)
     {
@@ -267,7 +267,7 @@ class Dispatcher
     /**
      * Return the raw response object once request is dispatched.
      *
-     * @return \Dingo\Api\Dispatcher
+     * @return \Afroware\Restfy\Dispatcher
      */
     public function raw()
     {
@@ -279,7 +279,7 @@ class Dispatcher
     /**
      * Only authenticate with the given user for a single request.
      *
-     * @return \Dingo\Api\Dispatcher
+     * @return \Afroware\Restfy\Dispatcher
      */
     public function once()
     {
@@ -293,7 +293,7 @@ class Dispatcher
      *
      * @param string $version
      *
-     * @return \Dingo\Api\Dispatcher
+     * @return \Afroware\Restfy\Dispatcher
      */
     public function version($version)
     {
@@ -307,7 +307,7 @@ class Dispatcher
      *
      * @param string|array $parameters
      *
-     * @return \Dingo\Api\Dispatcher
+     * @return \Afroware\Restfy\Dispatcher
      */
     public function with($parameters)
     {
@@ -322,7 +322,7 @@ class Dispatcher
      * @param string $key
      * @param string $value
      *
-     * @return \Dingo\Api\Dispatcher
+     * @return \Afroware\Restfy\Dispatcher
      */
     public function header($key, $value)
     {
@@ -336,7 +336,7 @@ class Dispatcher
      *
      * @param \Symfony\Component\HttpFoundation\Cookie $cookie
      *
-     * @return \Dingo\Api\Dispatcher
+     * @return \Afroware\Restfy\Dispatcher
      */
     public function cookie(Cookie $cookie)
     {
@@ -452,7 +452,7 @@ class Dispatcher
      * @param string       $uri
      * @param string|array $parameters
      *
-     * @return \Dingo\Api\Http\InternalRequest
+     * @return \Afroware\Restfy\Http\InternalRequest
      */
     protected function createRequest($verb, $uri, $parameters)
     {
@@ -523,7 +523,7 @@ class Dispatcher
     /**
      * Attempt to dispatch an internal request.
      *
-     * @param \Dingo\Api\Http\InternalRequest $request
+     * @param \Afroware\Restfy\Http\InternalRequest $request
      *
      * @throws \Exception|\Symfony\Component\HttpKernel\Exception\HttpExceptionInterface
      *

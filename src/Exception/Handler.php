@@ -1,12 +1,12 @@
 <?php
 
-namespace Dingo\Api\Exception;
+namespace Afroware\Restfy\Exception;
 
 use Exception;
 use ReflectionFunction;
 use Illuminate\Http\Response;
-use Dingo\Api\Contract\Debug\ExceptionHandler;
-use Dingo\Api\Contract\Debug\MessageBagErrors;
+use Afroware\Restfy\Contract\Debug\ExceptionHandler;
+use Afroware\Restfy\Contract\Debug\MessageBagErrors;
 use Symfony\Component\HttpFoundation\Response as BaseResponse;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 use Illuminate\Contracts\Debug\ExceptionHandler as IlluminateExceptionHandler;
@@ -79,7 +79,7 @@ class Handler implements ExceptionHandler, IlluminateExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param \Dingo\Api\Http\Request $request
+     * @param \Afroware\Restfy\Http\Request $request
      * @param \Exception              $exception
      *
      * @throws \Exception

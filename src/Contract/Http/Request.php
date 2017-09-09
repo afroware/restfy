@@ -1,17 +1,17 @@
 <?php
 
-namespace Dingo\Api\Contract\Http;
+namespace Afroware\Restfy\Contract\Http;
 
 use Illuminate\Http\Request as IlluminateRequest;
 
 interface Request
 {
     /**
-     * Create a new Dingo request instance from an Illuminate request instance.
+     * Create a new Afroware request instance from an Illuminate request instance.
      *
      * @param \Illuminate\Http\Request $old
      *
-     * @return \Dingo\Api\Http\Request
+     * @return \Afroware\Restfy\Http\Request
      */
     public function createFromIlluminate(IlluminateRequest $old);
 }

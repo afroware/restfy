@@ -1,19 +1,19 @@
 <?php
 
-namespace Dingo\Api\Routing;
+namespace Afroware\Restfy\Routing;
 
 use Closure;
 use Exception;
 use RuntimeException;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Dingo\Api\Http\Request;
-use Dingo\Api\Http\Response;
+use Afroware\Restfy\Http\Request;
+use Afroware\Restfy\Http\Response;
 use Illuminate\Http\JsonResponse;
-use Dingo\Api\Http\InternalRequest;
+use Afroware\Restfy\Http\InternalRequest;
 use Illuminate\Container\Container;
-use Dingo\Api\Contract\Routing\Adapter;
-use Dingo\Api\Contract\Debug\ExceptionHandler;
+use Afroware\Restfy\Contract\Routing\Adapter;
+use Afroware\Restfy\Contract\Debug\ExceptionHandler;
 use Illuminate\Http\Response as IlluminateResponse;
 use Symfony\Component\HttpKernel\Exception\NotAcceptableHttpException;
 
@@ -22,21 +22,21 @@ class Router
     /**
      * Routing adapter instance.
      *
-     * @var \Dingo\Api\Contract\Routing\Adapter
+     * @var \Afroware\Restfy\Contract\Routing\Adapter
      */
     protected $adapter;
 
     /**
      * Accept parser instance.
      *
-     * @var \Dingo\Api\Http\Parser\Accept
+     * @var \Afroware\Restfy\Http\Parser\Accept
      */
     protected $accept;
 
     /**
      * Exception handler instance.
      *
-     * @var \Dingo\Api\Contract\Debug\ExceptionHandler
+     * @var \Afroware\Restfy\Contract\Debug\ExceptionHandler
      */
     protected $exception;
 
@@ -64,7 +64,7 @@ class Router
     /**
      * The current route being dispatched.
      *
-     * @var \Dingo\Api\Routing\Route
+     * @var \Afroware\Restfy\Routing\Route
      */
     protected $currentRoute;
 
@@ -92,9 +92,9 @@ class Router
     /**
      * Create a new router instance.
      *
-     * @param \Dingo\Api\Contract\Routing\Adapter        $adapter
-     * @param \Dingo\Api\Http\Parser\Accept              $accept
-     * @param \Dingo\Api\Contract\Debug\ExceptionHandler $exception
+     * @param \Afroware\Restfy\Contract\Routing\Adapter        $adapter
+     * @param \Afroware\Restfy\Http\Parser\Accept              $accept
+     * @param \Afroware\Restfy\Contract\Debug\ExceptionHandler $exception
      * @param \Illuminate\Container\Container            $container
      * @param string                                     $domain
      * @param string                                     $prefix
@@ -364,7 +364,7 @@ class Router
      */
     protected function addControllerMiddlewareToRouteAction(array $action)
     {
-        array_unshift($action['middleware'], 'api.controllers');
+        array_unshift($action['middleware'], 'restfy.controllers');
 
         return $action;
     }
@@ -495,11 +495,11 @@ class Router
     /**
      * Dispatch a request via the adapter.
      *
-     * @param \Dingo\Api\Http\Request $request
+     * @param \Afroware\Restfy\Http\Request $request
      *
      * @throws \Exception
      *
-     * @return \Dingo\Api\Http\Response
+     * @return \Afroware\Restfy\Http\Response
      */
     public function dispatch(Request $request)
     {
@@ -532,10 +532,10 @@ class Router
      * Prepare a response by transforming and formatting it correctly.
      *
      * @param mixed                   $response
-     * @param \Dingo\Api\Http\Request $request
+     * @param \Afroware\Restfy\Http\Request $request
      * @param string                  $format
      *
-     * @return \Dingo\Api\Http\Response
+     * @return \Afroware\Restfy\Http\Response
      */
     protected function prepareResponse($response, Request $request, $format)
     {
@@ -607,7 +607,7 @@ class Router
     /**
      * Get the current request instance.
      *
-     * @return \Dingo\Api\Http\Request
+     * @return \Afroware\Restfy\Http\Request
      */
     public function getCurrentRequest()
     {
@@ -617,7 +617,7 @@ class Router
     /**
      * Get the current route instance.
      *
-     * @return \Dingo\Api\Routing\Route
+     * @return \Afroware\Restfy\Routing\Route
      */
     public function getCurrentRoute()
     {
@@ -645,7 +645,7 @@ class Router
      *
      * @param array|\Illuminate\Routing\Route $route
      *
-     * @return \Dingo\Api\Routing\Route
+     * @return \Afroware\Restfy\Routing\Route
      */
     public function createRoute($route)
     {
@@ -655,7 +655,7 @@ class Router
     /**
      * Set the current route instance.
      *
-     * @param \Dingo\Api\Routing\Route $route
+     * @param \Afroware\Restfy\Routing\Route $route
      *
      * @return void
      */
@@ -741,7 +741,7 @@ class Router
     {
         $this->adapter->setRoutes($routes);
 
-        $this->container->instance('api.routes', $this->getRoutes());
+        $this->container->instance('restfy.routes', $this->getRoutes());
     }
 
     /**

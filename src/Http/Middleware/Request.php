@@ -1,19 +1,19 @@
 <?php
 
-namespace Dingo\Api\Http\Middleware;
+namespace Afroware\Restfy\Http\Middleware;
 
 use Closure;
 use Exception;
-use Dingo\Api\Routing\Router;
+use Afroware\Restfy\Routing\Router;
 use Laravel\Lumen\Application;
 use Illuminate\Pipeline\Pipeline;
-use Dingo\Api\Http\RequestValidator;
-use Dingo\Api\Event\RequestWasMatched;
-use Dingo\Api\Http\Request as HttpRequest;
+use Afroware\Restfy\Http\RequestValidator;
+use Afroware\Restfy\Event\RequestWasMatched;
+use Afroware\Restfy\Http\Request as HttpRequest;
 use Illuminate\Contracts\Container\Container;
-use Dingo\Api\Contract\Debug\ExceptionHandler;
+use Afroware\Restfy\Contract\Debug\ExceptionHandler;
 use Illuminate\Events\Dispatcher as EventDispatcher;
-use Dingo\Api\Contract\Http\Request as RequestContract;
+use Afroware\Restfy\Contract\Http\Request as RequestContract;
 use Illuminate\Contracts\Debug\ExceptionHandler as LaravelExceptionHandler;
 
 class Request
@@ -28,21 +28,21 @@ class Request
     /**
      * Exception handler instance.
      *
-     * @var \Dingo\Api\Contract\Debug\ExceptionHandler
+     * @var \Afroware\Restfy\Contract\Debug\ExceptionHandler
      */
     protected $exception;
 
     /**
      * Router instance.
      *
-     * @var \Dingo\Api\Routing\Router
+     * @var \Afroware\Restfy\Routing\Router
      */
     protected $router;
 
     /**
      * HTTP validator instance.
      *
-     * @var \Dingo\Api\Http\Validator
+     * @var \Afroware\Restfy\Http\Validator
      */
     protected $validator;
 
@@ -64,9 +64,9 @@ class Request
      * Create a new request middleware instance.
      *
      * @param \Illuminate\Contracts\Foundation\Application $app
-     * @param \Dingo\Api\Contract\Debug\ExceptionHandler   $exception
-     * @param \Dingo\Api\Routing\Router                    $router
-     * @param \Dingo\Api\Http\RequestValidator             $validator
+     * @param \Afroware\Restfy\Contract\Debug\ExceptionHandler   $exception
+     * @param \Afroware\Restfy\Routing\Router                    $router
+     * @param \Afroware\Restfy\Http\RequestValidator             $validator
      * @param \Illuminate\Events\Dispatcher                $events
      *
      * @return void
@@ -112,11 +112,11 @@ class Request
     }
 
     /**
-     * Send the request through the Dingo router.
+     * Send the request through the Afroware router.
      *
-     * @param \Dingo\Api\Http\Request $request
+     * @param \Afroware\Restfy\Http\Request $request
      *
-     * @return \Dingo\Api\Http\Response
+     * @return \Afroware\Restfy\Http\Response
      */
     protected function sendRequestThroughRouter(HttpRequest $request)
     {
@@ -190,7 +190,7 @@ class Request
     /**
      * Gather the middlewares for the route.
      *
-     * @param \Dingo\Api\Http\Request $request
+     * @param \Afroware\Restfy\Http\Request $request
      *
      * @return array
      */

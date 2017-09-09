@@ -1,12 +1,12 @@
 <?php
 
-namespace Dingo\Api\Tests\Auth\Provider;
+namespace Afroware\Restfy\Tests\Auth\Provider;
 
 use Mockery as m;
-use Dingo\Api\Routing\Route;
+use Afroware\Restfy\Routing\Route;
 use Illuminate\Http\Request;
 use PHPUnit_Framework_TestCase;
-use Dingo\Api\Auth\Provider\OAuth2;
+use Afroware\Restfy\Auth\Provider\OAuth2;
 use League\OAuth2\Server\ResourceServer;
 use League\OAuth2\Server\Entity\SessionEntity;
 use League\OAuth2\Server\Entity\AccessTokenEntity;

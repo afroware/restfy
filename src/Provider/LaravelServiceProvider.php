@@ -1,18 +1,18 @@
 <?php
 
-namespace Dingo\Api\Provider;
+namespace Afroware\Restfy\Provider;
 
 use ReflectionClass;
-use Dingo\Api\Http\Middleware\Auth;
+use Afroware\Restfy\Http\Middleware\Auth;
 use Illuminate\Contracts\Http\Kernel;
-use Dingo\Api\Event\RequestWasMatched;
-use Dingo\Api\Http\Middleware\Request;
-use Dingo\Api\Http\Middleware\RateLimit;
+use Afroware\Restfy\Event\RequestWasMatched;
+use Afroware\Restfy\Http\Middleware\Request;
+use Afroware\Restfy\Http\Middleware\RateLimit;
 use Illuminate\Routing\ControllerDispatcher;
-use Dingo\Api\Http\Middleware\PrepareController;
-use Dingo\Api\Routing\Adapter\Laravel as LaravelAdapter;
+use Afroware\Restfy\Http\Middleware\PrepareController;
+use Afroware\Restfy\Routing\Adapter\Laravel as LaravelAdapter;
 
-class LaravelServiceProvider extends DingoServiceProvider
+class LaravelServiceProvider extends AfrowareServiceProvider
 {
     /**
      * Boot the service provider.
@@ -23,7 +23,7 @@ class LaravelServiceProvider extends DingoServiceProvider
     {
         parent::boot();
 
-        $this->publishes([realpath(__DIR__.'/../../config/api.php') => config_path('api.php')]);
+        $this->publishes([realpath(__DIR__.'/../../config/restfy.php') => config_path('restfy.php')]);
 
         $kernel = $this->app->make(Kernel::class);
 
@@ -39,9 +39,9 @@ class LaravelServiceProvider extends DingoServiceProvider
             $this->updateRouterBindings();
         });
 
-        $this->addMiddlewareAlias('api.auth', Auth::class);
-        $this->addMiddlewareAlias('api.throttle', RateLimit::class);
-        $this->addMiddlewareAlias('api.controllers', PrepareController::class);
+        $this->addMiddlewareAlias('restfy.auth', Auth::class);
+        $this->addMiddlewareAlias('restfy.throttle', RateLimit::class);
+        $this->addMiddlewareAlias('restfy.controllers', PrepareController::class);
     }
 
     /**
@@ -52,7 +52,7 @@ class LaravelServiceProvider extends DingoServiceProvider
     protected function replaceRouteDispatcher()
     {
         $this->app->singleton('illuminate.route.dispatcher', function ($app) {
-            return new ControllerDispatcher($app['api.router.adapter']->getRouter(), $app);
+            return new ControllerDispatcher($app['restfy.router.adapter']->getRouter(), $app);
         });
     }
 
@@ -65,7 +65,7 @@ class LaravelServiceProvider extends DingoServiceProvider
     protected function updateRouterBindings()
     {
         foreach ($this->getRouterBindings() as $key => $binding) {
-            $this->app['api.router.adapter']->getRouter()->bind($key, $binding);
+            $this->app['restfy.router.adapter']->getRouter()->bind($key, $binding);
         }
     }
 
@@ -101,7 +101,7 @@ class LaravelServiceProvider extends DingoServiceProvider
      */
     protected function registerRouterAdapter()
     {
-        $this->app->singleton('api.router.adapter', function ($app) {
+        $this->app->singleton('restfy.router.adapter', function ($app) {
             return new LaravelAdapter($app['router']);
         });
     }

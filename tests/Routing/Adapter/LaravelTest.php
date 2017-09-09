@@ -1,11 +1,11 @@
 <?php
 
-namespace Dingo\Api\Tests\Routing\Adapter;
+namespace Afroware\Restfy\Tests\Routing\Adapter;
 
 use Illuminate\Routing\Router;
 use Illuminate\Events\Dispatcher;
 use Illuminate\Container\Container;
-use Dingo\Api\Routing\Adapter\Laravel;
+use Afroware\Restfy\Routing\Adapter\Laravel;
 
 class LaravelTest extends BaseAdapterTest
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace Dingo\Api\Auth\Provider;
+namespace Afroware\Restfy\Auth\Provider;
 
 use Illuminate\Http\Request;
-use Dingo\Api\Routing\Route;
+use Afroware\Restfy\Routing\Route;
 use Illuminate\Auth\AuthManager;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
@@ -41,7 +41,7 @@ class Basic extends Authorization
      * Authenticate request with Basic.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \Dingo\Api\Routing\Route $route
+     * @param \Afroware\Restfy\Routing\Route $route
      *
      * @return mixed
      */

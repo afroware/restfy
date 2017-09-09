@@ -1,23 +1,23 @@
 <?php
 
-namespace Dingo\Api\Tests\Http\Middleware;
+namespace Afroware\Restfy\Tests\Http\Middleware;
 
 use Mockery as m;
-use Dingo\Api\Http\Request;
-use Dingo\Api\Routing\Router;
-use Dingo\Api\Http\Validation;
+use Afroware\Restfy\Http\Request;
+use Afroware\Restfy\Routing\Router;
+use Afroware\Restfy\Http\Validation;
 use PHPUnit_Framework_TestCase;
-use Dingo\Api\Exception\Handler;
-use Dingo\Api\Http\Validation\Accept;
-use Dingo\Api\Http\Validation\Domain;
-use Dingo\Api\Http\Validation\Prefix;
-use Dingo\Api\Http\RequestValidator;
-use Dingo\Api\Tests\Stubs\ApplicationStub;
-use Dingo\Api\Http\Parser\Accept as AcceptParser;
+use Afroware\Restfy\Exception\Handler;
+use Afroware\Restfy\Http\Validation\Accept;
+use Afroware\Restfy\Http\Validation\Domain;
+use Afroware\Restfy\Http\Validation\Prefix;
+use Afroware\Restfy\Http\RequestValidator;
+use Afroware\Restfy\Tests\Stubs\ApplicationStub;
+use Afroware\Restfy\Http\Parser\Accept as AcceptParser;
 use Illuminate\Http\Request as IlluminateRequest;
 use Illuminate\Events\Dispatcher as EventDispatcher;
-use Dingo\Api\Contract\Http\Request as RequestContract;
-use Dingo\Api\Http\Middleware\Request as RequestMiddleware;
+use Afroware\Restfy\Contract\Http\Request as RequestContract;
+use Afroware\Restfy\Http\Middleware\Request as RequestMiddleware;
 
 class RequestTest extends PHPUnit_Framework_TestCase
 {
@@ -43,7 +43,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     {
         $this->app[Domain::class] = new Validation\Domain(null);
         $this->app[Prefix::class] = new Validation\Prefix(null);
-        $this->app[Accept::class] = new Validation\Accept(new AcceptParser('vnd', 'api', 'v1', 'json'));
+        $this->app[Accept::class] = new Validation\Accept(new AcceptParser('vnd', 'restfy', 'v1', 'json'));
 
         $request = Request::create('foo', 'GET');
 
@@ -56,7 +56,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     {
         $this->app[Domain::class] = new Validation\Domain(null);
         $this->app[Prefix::class] = new Validation\Prefix('/');
-        $this->app[Accept::class] = new Validation\Accept(new AcceptParser('vnd', 'api', 'v1', 'json'));
+        $this->app[Accept::class] = new Validation\Accept(new AcceptParser('vnd', 'restfy', 'v1', 'json'));
 
         $request = IlluminateRequest::create('foo', 'GET');
 
@@ -68,7 +68,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
 
         $this->app[Domain::class] = new Validation\Domain(null);
         $this->app[Prefix::class] = new Validation\Prefix('bar');
-        $this->app[Accept::class] = new Validation\Accept(new AcceptParser('vnd', 'api', 'v1', 'json'));
+        $this->app[Accept::class] = new Validation\Accept(new AcceptParser('vnd', 'restfy', 'v1', 'json'));
 
         $request = IlluminateRequest::create('bar/foo', 'GET');
 
@@ -89,7 +89,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     {
         $this->app[Domain::class] = new Validation\Domain('foo.bar');
         $this->app[Prefix::class] = new Validation\Prefix(null);
-        $this->app[Accept::class] = new Validation\Accept(new AcceptParser('vnd', 'api', 'v1', 'json'));
+        $this->app[Accept::class] = new Validation\Accept(new AcceptParser('vnd', 'restfy', 'v1', 'json'));
 
         $request = IlluminateRequest::create('http://foo.bar/baz', 'GET');
 

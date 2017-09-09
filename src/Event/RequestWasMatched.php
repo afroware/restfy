@@ -1,8 +1,8 @@
 <?php
 
-namespace Dingo\Api\Event;
+namespace Afroware\Restfy\Event;
 
-use Dingo\Api\Http\Request;
+use Afroware\Restfy\Http\Request;
 use Illuminate\Contracts\Container\Container;
 
 class RequestWasMatched
@@ -10,7 +10,7 @@ class RequestWasMatched
     /**
      * Request instance.
      *
-     * @var \Dingo\Api\Http\Request
+     * @var \Afroware\Restfy\Http\Request
      */
     public $request;
 
@@ -24,7 +24,7 @@ class RequestWasMatched
     /**
      * Create a new request was matched event.
      *
-     * @param \Dingo\Api\Http\Request                   $request
+     * @param \Afroware\Restfy\Http\Request                   $request
      * @param \Illuminate\Contracts\Container\Container $app
      *
      * @return void

@@ -1,12 +1,12 @@
 <?php
 
-namespace Dingo\Api\Provider;
+namespace Afroware\Restfy\Provider;
 
-use Dingo\Api\Routing\Router;
-use Dingo\Api\Routing\UrlGenerator;
-use Dingo\Api\Contract\Routing\Adapter;
-use Dingo\Api\Routing\ResourceRegistrar;
-use Dingo\Api\Contract\Debug\ExceptionHandler;
+use Afroware\Restfy\Routing\Router;
+use Afroware\Restfy\Routing\UrlGenerator;
+use Afroware\Restfy\Contract\Routing\Adapter;
+use Afroware\Restfy\Routing\ResourceRegistrar;
+use Afroware\Restfy\Contract\Debug\ExceptionHandler;
 
 class RoutingServiceProvider extends ServiceProvider
 {
@@ -25,7 +25,7 @@ class RoutingServiceProvider extends ServiceProvider
      */
     protected function registerRouter()
     {
-        $this->app->singleton('api.router', function ($app) {
+        $this->app->singleton('restfy.router', function ($app) {
             $router = new Router(
                 $app[Adapter::class],
                 $app[ExceptionHandler::class],
@@ -49,7 +49,7 @@ class RoutingServiceProvider extends ServiceProvider
      */
     protected function registerUrlGenerator()
     {
-        $this->app->singleton('api.url', function ($app) {
+        $this->app->singleton('restfy.url', function ($app) {
             $url = new UrlGenerator($app['request']);
 
             $url->setRouteCollections($app[Router::class]->getRoutes());
@@ -66,7 +66,7 @@ class RoutingServiceProvider extends ServiceProvider
     private function requestRebinder()
     {
         return function ($app, $request) {
-            $app['api.url']->setRequest($request);
+            $app['restfy.url']->setRequest($request);
         };
     }
 }

@@ -1,9 +1,9 @@
 <?php
 
-namespace Dingo\Api\Http;
+namespace Afroware\Restfy\Http;
 
 use Illuminate\Contracts\Validation\Validator;
-use Dingo\Api\Exception\ValidationHttpException;
+use Afroware\Restfy\Exception\ValidationHttpException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Foundation\Http\FormRequest as IlluminateFormRequest;
 

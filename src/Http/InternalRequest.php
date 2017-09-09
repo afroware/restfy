@@ -1,6 +1,6 @@
 <?php
 
-namespace Dingo\Api\Http;
+namespace Afroware\Restfy\Http;
 
 class InternalRequest extends Request
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Dingo\Api\Http\Response\Format;
+namespace Afroware\Restfy\Http\Response\Format;
 
 class Jsonp extends Json
 {

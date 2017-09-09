@@ -1,12 +1,12 @@
 <?php
 
-namespace Dingo\Api\Tests\Routing\Adapter;
+namespace Afroware\Restfy\Tests\Routing\Adapter;
 
 use Mockery as m;
-use Dingo\Api\Http;
-use Dingo\Api\Routing\Router;
+use Afroware\Restfy\Http;
+use Afroware\Restfy\Routing\Router;
 use PHPUnit_Framework_TestCase;
-use Dingo\Api\Tests\Stubs\MiddlewareStub;
+use Afroware\Restfy\Tests\Stubs\MiddlewareStub;
 
 abstract class BaseAdapterTest extends PHPUnit_Framework_TestCase
 {
@@ -14,15 +14,15 @@ abstract class BaseAdapterTest extends PHPUnit_Framework_TestCase
     {
         $this->container = $this->getContainerInstance();
         $this->container['Illuminate\Container\Container'] = $this->container;
-        $this->container['api.auth'] = new MiddlewareStub;
-        $this->container['api.limiting'] = new MiddlewareStub;
-        $this->container['api.controllers'] = new MiddlewareStub;
+        $this->container['restfy.auth'] = new MiddlewareStub;
+        $this->container['restfy.limiting'] = new MiddlewareStub;
+        $this->container['restfy.controllers'] = new MiddlewareStub;
         $this->container['request'] = new Http\Request;
 
-        Http\Request::setAcceptParser(new Http\Parser\Accept('vnd', 'api', 'v1', 'json'));
+        Http\Request::setAcceptParser(new Http\Parser\Accept('vnd', 'restfy', 'v1', 'json'));
 
         $this->adapter = $this->getAdapterInstance();
-        $this->exception = m::mock('Dingo\Api\Exception\Handler');
+        $this->exception = m::mock('Afroware\Restfy\Exception\Handler');
         $this->router = new Router($this->adapter, $this->exception, $this->container, null, null);
 
         Http\Response::setFormatters(['json' => new Http\Response\Format\Json]);
@@ -83,31 +83,31 @@ abstract class BaseAdapterTest extends PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('v2', $this->router->getRoutes(), 'No routes were registered for version 2.');
         $this->assertArrayHasKey('v3', $this->router->getRoutes(), 'No routes were registered for version 3.');
 
-        $request = $this->createRequest('/foo', 'GET', ['accept' => 'application/vnd.api.v1+json']);
+        $request = $this->createRequest('/foo', 'GET', ['accept' => 'application/vnd.restfy.v1+json']);
         $this->assertSame('foo', $this->router->dispatch($request)->getContent());
 
-        $request = $this->createRequest('/foo/', 'GET', ['accept' => 'application/vnd.api.v1+json']);
+        $request = $this->createRequest('/foo/', 'GET', ['accept' => 'application/vnd.restfy.v1+json']);
         $this->assertSame('foo', $this->router->dispatch($request)->getContent(), 'Could not dispatch request with trailing slash.');
 
-        $request = $this->createRequest('/foo', 'GET', ['accept' => 'application/vnd.api.v2+json']);
+        $request = $this->createRequest('/foo', 'GET', ['accept' => 'application/vnd.restfy.v2+json']);
         $this->assertSame('bar', $this->router->dispatch($request)->getContent());
 
-        $request = $this->createRequest('/foo', 'GET', ['accept' => 'application/vnd.api.v3+json']);
+        $request = $this->createRequest('/foo', 'GET', ['accept' => 'application/vnd.restfy.v3+json']);
         $this->assertSame('bar', $this->router->dispatch($request)->getContent());
 
-        $request = $this->createRequest('/foo', 'POST', ['accept' => 'application/vnd.api.v1+json']);
+        $request = $this->createRequest('/foo', 'POST', ['accept' => 'application/vnd.restfy.v1+json']);
         $this->assertSame('posted', $this->router->dispatch($request)->getContent());
 
-        $request = $this->createRequest('/foo', 'PATCH', ['accept' => 'application/vnd.api.v1+json']);
+        $request = $this->createRequest('/foo', 'PATCH', ['accept' => 'application/vnd.restfy.v1+json']);
         $this->assertSame('patched', $this->router->dispatch($request)->getContent());
 
-        $request = $this->createRequest('/foo', 'DELETE', ['accept' => 'application/vnd.api.v1+json']);
+        $request = $this->createRequest('/foo', 'DELETE', ['accept' => 'application/vnd.restfy.v1+json']);
         $this->assertSame('deleted', $this->router->dispatch($request)->getContent());
 
-        $request = $this->createRequest('/foo', 'PUT', ['accept' => 'application/vnd.api.v1+json']);
+        $request = $this->createRequest('/foo', 'PUT', ['accept' => 'application/vnd.restfy.v1+json']);
         $this->assertSame('put', $this->router->dispatch($request)->getContent());
 
-        $request = $this->createRequest('/foo', 'options', ['accept' => 'application/vnd.api.v1+json']);
+        $request = $this->createRequest('/foo', 'options', ['accept' => 'application/vnd.restfy.v1+json']);
         $this->assertSame('options', $this->router->dispatch($request)->getContent());
     }
 
@@ -140,7 +140,7 @@ abstract class BaseAdapterTest extends PHPUnit_Framework_TestCase
             });
         });
 
-        $request = $this->createRequest('/foo/bar/foo', 'GET', ['accept' => 'application/vnd.api.v2+json']);
+        $request = $this->createRequest('/foo/bar/foo', 'GET', ['accept' => 'application/vnd.restfy.v2+json']);
         $this->assertSame('bar', $this->router->dispatch($request)->getContent(), 'Router could not dispatch prefixed routes.');
     }
 
@@ -158,7 +158,7 @@ abstract class BaseAdapterTest extends PHPUnit_Framework_TestCase
             });
         });
 
-        $request = $this->createRequest('http://foo.bar/foo', 'GET', ['accept' => 'application/vnd.api.v2+json']);
+        $request = $this->createRequest('http://foo.bar/foo', 'GET', ['accept' => 'application/vnd.restfy.v2+json']);
         $this->assertSame('bar', $this->router->dispatch($request)->getContent(), 'Router could not dispatch domain routes.');
     }
 
@@ -176,29 +176,29 @@ abstract class BaseAdapterTest extends PHPUnit_Framework_TestCase
             });
         });
 
-        $request = $this->createRequest('/foo', 'GET', ['accept' => 'application/vnd.api.v1.1+json']);
+        $request = $this->createRequest('/foo', 'GET', ['accept' => 'application/vnd.restfy.v1.1+json']);
         $this->assertSame('foo', $this->router->dispatch($request)->getContent(), 'Router does not support point release versions.');
 
-        $request = $this->createRequest('/bar', 'GET', ['accept' => 'application/vnd.api.v2.0.1+json']);
+        $request = $this->createRequest('/bar', 'GET', ['accept' => 'application/vnd.restfy.v2.0.1+json']);
         $this->assertSame('bar', $this->router->dispatch($request)->getContent(), 'Router does not support point release versions.');
     }
 
     public function testRoutingResources()
     {
-        $this->router->version('v1', ['namespace' => 'Dingo\Api\Tests\Stubs'], function () {
+        $this->router->version('v1', ['namespace' => 'Afroware\Restfy\Tests\Stubs'], function () {
             $this->router->resources([
                 'bar' => ['RoutingControllerStub', ['only' => ['index']]],
             ]);
         });
 
-        $request = $this->createRequest('/bar', 'GET', ['accept' => 'application/vnd.api.v1+json']);
+        $request = $this->createRequest('/bar', 'GET', ['accept' => 'application/vnd.restfy.v1+json']);
 
         $this->assertSame('foo', $this->router->dispatch($request)->getContent(), 'Router did not register controller correctly.');
     }
 
     public function testIterableRoutes()
     {
-        $this->router->version('v1', ['namespace' => 'Dingo\Api\Tests\Stubs'], function () {
+        $this->router->version('v1', ['namespace' => 'Afroware\Restfy\Tests\Stubs'], function () {
             $this->router->post('/', ['uses' => 'RoutingControllerStub@index']);
             $this->router->post('/find', ['uses' => 'RoutingControllerOtherStub@show']);
         });

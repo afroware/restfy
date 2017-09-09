@@ -1,24 +1,24 @@
 <?php
 
-namespace Dingo\Api\Tests;
+namespace Afroware\Restfy\Tests;
 
-use Dingo\Api\Exception\ValidationHttpException;
+use Afroware\Restfy\Exception\ValidationHttpException;
 use Mockery as m;
-use Dingo\Api\Http;
-use Dingo\Api\Auth\Auth;
-use Dingo\Api\Dispatcher;
+use Afroware\Restfy\Http;
+use Afroware\Restfy\Auth\Auth;
+use Afroware\Restfy\Dispatcher;
 use Illuminate\Http\Request;
-use Dingo\Api\Routing\Router;
+use Afroware\Restfy\Routing\Router;
 use PHPUnit_Framework_TestCase;
-use Dingo\Api\Tests\Stubs\UserStub;
+use Afroware\Restfy\Tests\Stubs\UserStub;
 use Illuminate\Container\Container;
 use Illuminate\Filesystem\Filesystem;
-use Dingo\Api\Tests\Stubs\MiddlewareStub;
-use Dingo\Api\Tests\Stubs\TransformerStub;
-use Dingo\Api\Tests\Stubs\RoutingAdapterStub;
-use Dingo\Api\Tests\Stubs\UserTransformerStub;
-use Dingo\Api\Exception\InternalHttpException;
-use Dingo\Api\Transformer\Factory as TransformerFactory;
+use Afroware\Restfy\Tests\Stubs\MiddlewareStub;
+use Afroware\Restfy\Tests\Stubs\TransformerStub;
+use Afroware\Restfy\Tests\Stubs\RoutingAdapterStub;
+use Afroware\Restfy\Tests\Stubs\UserTransformerStub;
+use Afroware\Restfy\Exception\InternalHttpException;
+use Afroware\Restfy\Transformer\Factory as TransformerFactory;
 use Illuminate\Support\Facades\Request as RequestFacade;
 
 class DispatcherTest extends PHPUnit_Framework_TestCase
@@ -27,21 +27,21 @@ class DispatcherTest extends PHPUnit_Framework_TestCase
     {
         $this->container = new Container;
         $this->container['request'] = Request::create('/', 'GET');
-        $this->container['api.auth'] = new MiddlewareStub;
-        $this->container['api.limiting'] = new MiddlewareStub;
+        $this->container['restfy.auth'] = new MiddlewareStub;
+        $this->container['restfy.limiting'] = new MiddlewareStub;
 
-        Http\Request::setAcceptParser(new Http\Parser\Accept('vnd', 'api', 'v1', 'json'));
+        Http\Request::setAcceptParser(new Http\Parser\Accept('vnd', 'restfy', 'v1', 'json'));
 
         $this->transformerFactory = new TransformerFactory($this->container, new TransformerStub);
 
         $this->adapter = new RoutingAdapterStub;
-        $this->exception = m::mock('Dingo\Api\Exception\Handler');
+        $this->exception = m::mock('Afroware\Restfy\Exception\Handler');
         $this->router = new Router($this->adapter, $this->exception, $this->container, null, null);
 
         $this->auth = new Auth($this->router, $this->container, []);
         $this->dispatcher = new Dispatcher($this->container, new Filesystem, $this->router, $this->auth);
 
-        $this->dispatcher->setSubtype('api');
+        $this->dispatcher->setSubtype('restfy');
         $this->dispatcher->setStandardsTree('vnd');
         $this->dispatcher->setDefaultVersion('v1');
         $this->dispatcher->setDefaultFormat('json');
@@ -128,7 +128,7 @@ class DispatcherTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \Dingo\Api\Exception\InternalHttpException
+     * @expectedException \Afroware\Restfy\Exception\InternalHttpException
      */
     public function testInternalRequestThrowsExceptionWhenResponseIsNotOkay()
     {
@@ -233,16 +233,16 @@ class DispatcherTest extends PHPUnit_Framework_TestCase
 
     public function testRequestStackIsMaintained()
     {
-        $this->router->version('v1', ['prefix' => 'api'], function () {
+        $this->router->version('v1', ['prefix' => 'restfy'], function () {
             $this->router->post('foo', function () {
                 $this->assertSame('bar', $this->router->getCurrentRequest()->input('foo'));
-                $this->dispatcher->with(['foo' => 'baz'])->post('api/bar');
+                $this->dispatcher->with(['foo' => 'baz'])->post('restfy/bar');
                 $this->assertSame('bar', $this->router->getCurrentRequest()->input('foo'));
             });
 
             $this->router->post('bar', function () {
                 $this->assertSame('baz', $this->router->getCurrentRequest()->input('foo'));
-                $this->dispatcher->with(['foo' => 'bazinga'])->post('api/baz');
+                $this->dispatcher->with(['foo' => 'bazinga'])->post('restfy/baz');
                 $this->assertSame('baz', $this->router->getCurrentRequest()->input('foo'));
             });
 
@@ -251,7 +251,7 @@ class DispatcherTest extends PHPUnit_Framework_TestCase
             });
         });
 
-        $this->dispatcher->with(['foo' => 'bar'])->post('api/foo');
+        $this->dispatcher->with(['foo' => 'bar'])->post('restfy/foo');
     }
 
     public function testRouteStackIsMaintained()
@@ -328,7 +328,7 @@ class DispatcherTest extends PHPUnit_Framework_TestCase
 
         $response = $this->dispatcher->raw()->get('foo');
 
-        $this->assertInstanceOf('Dingo\Api\Http\Response', $response);
+        $this->assertInstanceOf('Afroware\Restfy\Http\Response', $response);
         $this->assertSame('{"foo":"bar"}', $response->getContent());
         $this->assertSame(['foo' => 'bar'], $response->getOriginalContent());
     }
@@ -347,7 +347,7 @@ class DispatcherTest extends PHPUnit_Framework_TestCase
 
         $response = $this->dispatcher->raw()->get('foo');
 
-        $this->assertInstanceOf('Dingo\Api\Http\Response', $response);
+        $this->assertInstanceOf('Afroware\Restfy\Http\Response', $response);
         $this->assertSame('{"name":"Jason"}', $response->getContent());
         $this->assertSame($instance, $response->getOriginalContent());
     }
@@ -384,7 +384,7 @@ class DispatcherTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \Dingo\Api\Exception\InternalHttpException
+     * @expectedException \Afroware\Restfy\Exception\InternalHttpException
      */
     public function testNotOkJsonResponseThrowsException()
     {
@@ -398,7 +398,7 @@ class DispatcherTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \Dingo\Api\Exception\ValidationHttpException
+     * @expectedException \Afroware\Restfy\Exception\ValidationHttpException
      */
     public function testFormRequestValidationFailureThrowsValidationException()
     {

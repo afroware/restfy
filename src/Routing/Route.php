@@ -1,20 +1,20 @@
 <?php
 
-namespace Dingo\Api\Routing;
+namespace Afroware\Restfy\Routing;
 
 use Closure;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Container\Container;
-use Dingo\Api\Contract\Routing\Adapter;
+use Afroware\Restfy\Contract\Routing\Adapter;
 
 class Route
 {
     /**
      * Routing adapter instance.
      *
-     * @var \Dingo\Api\Contract\Routing\Adapter
+     * @var \Afroware\Restfy\Contract\Routing\Adapter
      */
     protected $adapter;
 
@@ -86,7 +86,7 @@ class Route
     /**
      * The throttle used by the route, takes precedence over rate limits.
      *
-     * @return string|\Dingo\Api\Contract\Http\RateLimit\Throttle
+     * @return string|\Afroware\Restfy\Contract\Http\RateLimit\Throttle
      */
     protected $throttle;
 
@@ -128,7 +128,7 @@ class Route
     /**
      * Create a new route instance.
      *
-     * @param \Dingo\Api\Contract\Routing\Adapter $adapter
+     * @param \Afroware\Restfy\Contract\Routing\Adapter $adapter
      * @param \Illuminate\Container\Container     $container
      * @param \Illuminate\Http\Request            $request
      * @param array|\Illuminate\Routing\Route     $route
@@ -349,9 +349,9 @@ class Route
      */
     public function isProtected()
     {
-        if (isset($this->middleware['api.auth']) || in_array('api.auth', $this->middleware)) {
-            if ($this->controller && isset($this->middleware['api.auth'])) {
-                return $this->optionsApplyToControllerMethod($this->middleware['api.auth']);
+        if (isset($this->middleware['restfy.auth']) || in_array('restfy.auth', $this->middleware)) {
+            if ($this->controller && isset($this->middleware['restfy.auth'])) {
+                return $this->optionsApplyToControllerMethod($this->middleware['restfy.auth']);
             }
 
             return true;
@@ -373,7 +373,7 @@ class Route
     /**
      * Get the route throttle.
      *
-     * @return string|\Dingo\Api\Http\RateLimit\Throttle\Throttle
+     * @return string|\Afroware\Restfy\Http\RateLimit\Throttle\Throttle
      */
     public function throttle()
     {
@@ -383,7 +383,7 @@ class Route
     /**
      * Get the route throttle.
      *
-     * @return string|\Dingo\Api\Http\RateLimit\Throttle\Throttle
+     * @return string|\Afroware\Restfy\Http\RateLimit\Throttle\Throttle
      */
     public function getThrottle()
     {
