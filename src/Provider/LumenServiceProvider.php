@@ -13,7 +13,7 @@ use Illuminate\Http\Request as IlluminateRequest;
 use Afroware\Restfy\Routing\Adapter\Lumen as LumenAdapter;
 use FastRoute\DataGenerator\GroupCountBased as GcbDataGenerator;
 
-class LumenServiceProvider extends AfrowareServiceProvider
+class LumenServiceProvider extends RestfyServiceProvider
 {
     /**
      * Boot the service provider.

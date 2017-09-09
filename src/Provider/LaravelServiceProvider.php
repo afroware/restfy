@@ -12,7 +12,7 @@ use Illuminate\Routing\ControllerDispatcher;
 use Afroware\Restfy\Http\Middleware\PrepareController;
 use Afroware\Restfy\Routing\Adapter\Laravel as LaravelAdapter;
 
-class LaravelServiceProvider extends AfrowareServiceProvider
+class LaravelServiceProvider extends RestfyServiceProvider
 {
     /**
      * Boot the service provider.
