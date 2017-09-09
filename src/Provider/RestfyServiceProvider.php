@@ -11,7 +11,7 @@ use Afroware\Restfy\Console\Command;
 use Afroware\Restfy\Exception\Handler as ExceptionHandler;
 use Afroware\Restfy\Transformer\Factory as TransformerFactory;
 
-class AfrowareServiceProvider extends ServiceProvider
+class RestfyServiceProvider extends ServiceProvider
 {
     /**
      * Boot the service provider.
