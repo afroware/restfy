@@ -67,4 +67,4 @@ This is a facade for the dispatcher, however, it also provides helper methods fo
 
 This is a facade for the API router and can be used to fetch the current route, request, check the current route name, etc.
 
-[Configuration →](https://github.com/dingo/api/wiki/Configuration)
+[Configuration →](Configuration.md)
