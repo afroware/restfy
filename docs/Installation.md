@@ -1,3 +1,10 @@
+---
+layout: page
+title: About
+permalink: /about/
+---
+
+
 To install this package you will need:
 
 - Laravel 5.1+ or Lumen 5.1+
@@ -14,6 +21,8 @@ You must then modify your `composer.json` file and run `composer update` to incl
 Or you can run the `composer require` command from your terminal.
 
 ```
+
+
 composer require dingo/api:1.0.x@dev
 ```
 
