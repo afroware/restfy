@@ -1,2 +1,5 @@
+title: Restfy
+description: A Restful API for Laravel & Lumen Frameworks.
+show_downloads: true
+google_analytics:
 theme: jekyll-theme-slate
-show_downloads:true
