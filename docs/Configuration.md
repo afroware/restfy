@@ -1,3 +1,9 @@
+---
+layout: page
+title: Config
+permalink: /config/
+---
+
 Much of the package comes preconfigured so that you can start building your API as soon as possible. You can use your `.env` file to configure most of the package, however, some finer tuning of the package will require you to either publish the configuration file (Laravel) or configure it in `bootstrap/app.php` (Lumen). You may also use the `boot` method of your `AppServiceProvider`.
 
 **Important:** If you're using Laravel 5 you must use either a published configuration file OR a service provider. Do not use the `bootstrap/app.php` file.
@@ -184,4 +190,4 @@ You can configure this in your `.env` file.
 API_DEBUG=true
 ```
 
-[← Installation](https://github.com/dingo/api/wiki/Installation) | [Creating API Endpoints →](https://github.com/dingo/api/wiki/Creating-API-Endpoints)
+[← Installation](Installation.md) | [Creating API Endpoints →](Creating-API-Endpoints.md)
