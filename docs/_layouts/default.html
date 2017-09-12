@@ -6,14 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="viewport" content="width=device-width,maximum-scale=2">
     <meta name="description" content="{{ site.title | default: site.github.repository_name }} : {{ site.description | default: site.github.project_tagline }}">
-
+	 <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+	<link rel="stylesheet" type="text/css" media="screen" href="{{ '/assets/css/cust.css?v=' | append: site.github.build_revision | relative_url }}">
+	
 
 {% seo %}
   </head>
 
   <body>
-
+	
     <!-- HEADER -->
     <div id="header_wrap" class="outer">
         <header class="inner">
@@ -24,19 +27,52 @@
 
           {% if site.show_downloads %}
             <section id="downloads">
-              <a class="zip_download_link" href="{{ site.github.zip_url }}">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="{{ site.github.tar_url }}">Download this project as a tar.gz file</a>
+              <a class="zip_download_link" href="{{ site.github.zip_url }}">Download zip file</a>
+              <a class="tar_download_link" href="{{ site.github.tar_url }}">Download tar.gz file</a>
             </section>
           {% endif %}
         </header>
     </div>
+	 <!-- Sidebar -->
+    <div class="wrapper">
 
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        {{ content }}
-      </section>
-    </div>
+		<nav id="sidebar">
+			<!-- Sidebar Header -->
+			<div class="sidebar-header">
+				<h3>Collapsible Sidebar</div>
+			</div>
+
+			<!-- Sidebar Links -->
+			<ul class="list-unstyled components">
+				<li class="active"><a href="#">Home</a></li>
+				<li><a href="#">About</a></li>
+
+				<li><!-- Link with dropdown items -->
+					<a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>
+					<ul class="collapse list-unstyled" id="homeSubmenu">
+						<li><a href="#">Page</a></li>
+						<li><a href="#">Page</a></li>
+						<li><a href="#">Page</a></li>
+					</ul>
+
+				<li><a href="#">Portfolio</a></li>
+				<li><a href="#">Contact</a></li>
+			</ul>
+		</nav>
+		<div id="content">
+			<button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
+				<i class="glyphicon glyphicon-align-left"></i>
+				Toggle Sidebar
+			</button>
+		<div>
+		<!-- MAIN CONTENT -->
+		<div id="main_content_wrap" class="outer">
+		  <section id="main_content" class="inner">
+			{{ content }}
+		  </section>
+		</div>
+
+	</div>
 
     <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
@@ -58,5 +94,16 @@
         ga('send', 'pageview');
       </script>
     {% endif %}
+	 <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <!-- Bootstrap Js CDN -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			$('#sidebarCollapse').on('click', function () {
+				$('#sidebar').toggleClass('active');
+			});
+		});
+	</script>
   </body>
 </html>
