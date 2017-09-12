@@ -1,7 +1,7 @@
 
 The Afroware Restfy package is meant to provide you, the developer, with a set of tools to help you easily and quickly build your own API. While the goal of this package is to remain as flexible as possible it still won't cover all situations and solve all problems.
 
-1. [Installation](Installation.md)
+1. [Installation](Installation)
 2. [Configuration](Configuration)
 3. [Creating API Endpoints](Creating-API-Endpoints)
 4. [Responses](Responses)
