@@ -37,6 +37,18 @@
         {{ content }}
       </section>
     </div>
+	
+	 <!-- SIDE CONTENT -->
+    <div id="side_content_wrap" class="outer">
+      <section id="side_content" class="inner">
+        <h2>{{ site.data.samplelist.docs_list_title }}</h2>
+		<ul>
+		   {% for item in site.data.samplelist.docs %}
+			  <li><a href="{{ item.url }}" alt="{{ item.title }}">{{ item.title }}</a></li>
+		   {% endfor %}
+		</ul>
+      </section>
+    </div>
 
     <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
