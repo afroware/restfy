@@ -47,7 +47,12 @@
 	 <!-- Sidebar -->
     <div class="wrapper">
 
-		<nav id="sidebar">
+		
+		<div id="content">
+			
+			<!-- MAIN CONTENT -->
+			<div id="main_content_wrap" class="outer">
+			  <nav id="sidebar">
 			<!-- Sidebar Header -->
 			<div class="sidebar-header">
 				<h3>Collapsible Sidebar</div>
@@ -70,14 +75,11 @@
 				<li><a href="#">Contact</a></li>
 			</ul>
 		</nav>
-		<div id="content">
-			<button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
-				<i class="glyphicon glyphicon-align-left"></i>
-				Toggle Sidebar
-			</button>
-			<!-- MAIN CONTENT -->
-			<div id="main_content_wrap" class="outer">
 			  <section id="main_content" class="inner">
+				  <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
+					<i class="glyphicon glyphicon-align-left"></i>
+					Toggle Sidebar
+				</button>
 				{{ content }}
 			  </section>
 			</div>
