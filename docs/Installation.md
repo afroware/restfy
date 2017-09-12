@@ -1,9 +1,3 @@
----
-layout: page
-title: About
-permalink: /about/
----
-
 
 To install this package you will need:
 
