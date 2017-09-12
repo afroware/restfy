@@ -1,8 +1,3 @@
----
-layout: page
-title: Config
-permalink: /config/
----
 
 Much of the package comes preconfigured so that you can start building your API as soon as possible. You can use your `.env` file to configure most of the package, however, some finer tuning of the package will require you to either publish the configuration file (Laravel) or configure it in `bootstrap/app.php` (Lumen). You may also use the `boot` method of your `AppServiceProvider`.
 
@@ -190,4 +185,4 @@ You can configure this in your `.env` file.
 API_DEBUG=true
 ```
 
-[← Installation](Installation.md) | [Creating API Endpoints →](Creating-API-Endpoints.md)
+[← Installation](Installation) | [Creating API Endpoints →](Creating-API-Endpoints)
